@@ -39,6 +39,15 @@ class PendaftaranController extends Controller
      */
     public function store(Request $request)
     {
+          $this->validate($request,[
+            'jalur' => 'required',
+            'ptn_dan_prodi' => 'required',
+            'kartu_identitas' => 'required|file|mimes:pdf|max:2048',
+            'rapor' => 'required|file|mimes:pdf|max:2048',
+            'dokumen_prestasi' => 'nullable|file|mimes:pdf|max:2048',
+            'reviewer' => 'nullable'
+        ]);
+
         $pendaftaran = new Pendaftaran();
         $peserta = Peserta::where('user_id', auth()->id())->value('id');
         $pendaftaran->peserta_id = $peserta;

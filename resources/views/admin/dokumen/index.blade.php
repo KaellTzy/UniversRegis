@@ -92,7 +92,7 @@
                                             Cek Dokumen
                                         </a>
                                     </td>
-                                    <td>{{ $data->user->name }}</td>
+                                    <td></td>
                                     <td>
                                         <form action="{{ route('admin.dokumen.destroy', $data->id) }}" method="POST">
                                             <a type="button" class="btn btn-warning" data-bs-toggle="modal"

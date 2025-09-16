@@ -56,7 +56,7 @@
                                 </span>
                                 <div class="ins-srv-right ms-3">
                                     <span class="fw-semibold">Peserta Lolos</span>
-                                    <h1 class="ins-heading mt-1">5000+</h1>
+                                    <h1 class="ins-heading mt-1">5.000</h1>
                                 </div>
                                 <div class="ins-srv-right ms-5">
                                     <span class="fw-semibold">Kepuasan Peserta</span>
