@@ -35,7 +35,7 @@
     <link rel="icon" href="user/img/icon.png" type="image/png" sizes="16x16">
 
     <!--title-->
-    <title>Pendaftaran - Laskar</title>
+    <title>Pendaftaran - Laskar Beasiswa</title>
 
     <!-- Font -->
     <link
@@ -59,17 +59,25 @@
 </head>
 
 <body>
-
     <!--preloader start-->
     <div id="preloader" class="bg-light-subtle">
         <div class="preloader-wrap">
-            <img src="user/img/favicon.png" alt="logo" class="img-fluid preloader-icon">
+            <img src="user/img/icon.png" alt="logo" class="img-fluid preloader-icon">
             <div class="loading-bar"></div>
         </div>
     </div>
     <!--preloader end-->
     <!--main content wrapper start-->
     <div class="main-wrapper">
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
         <!--register section start-->
         <section class="sign-up-in-section bg-dark ptb-60"
@@ -80,8 +88,8 @@
                         <div class="pricing-content-wrap bg-custom-light rounded-custom shadow-lg">
                             <div
                                 class="price-feature-col pricing-feature-info text-white left-radius p-5 order-1 order-lg-0">
-                                <a href="#" class="mb-5 d-none d-xl-block d-lg-block"><img
-                                        src="user/img/logo-white.png" alt="logo" class="img-fluid"></a>
+                                <a href="#" class="mb-5 d-none d-xl-block d-lg-block"><img src="user/img/logo-white.png"
+                                        alt="logo" class="img-fluid"></a>
                                 <div class="customer-testimonial-wrap mt-60">
                                     <div class="tab-content" id="nav-tabContent">
                                         <div class="tab-pane fade show active" id="testimonial-tab-1" role="tabpanel">
@@ -193,13 +201,23 @@
                                                     class="text-danger">*</span></label>
                                             <div class="input-group mb-3">
                                                 <input type="file" name="kartu_identitas" class="form-control">
+                                                @error('kartu_identitas')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-sm-12">
                                             <label for="password_confirmation" class="mb-1">Rapor <span
-                                                    class="text-danger">*</span></label>
+                                                    class="text-danger"> (Format Pdf)</span></label>
                                             <div class="input-group mb-3">
                                                 <input type="file" name="rapor" class="form-control">
+                                                @error('rapor')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-sm-12">
@@ -207,6 +225,11 @@
                                                     class="text-danger "> Jika ada</span> </label>
                                             <div class="input-group mb-3">
                                                 <input type="file" name="dokumen_prestasi" class="form-control">
+                                                @error('dokumen_prestasi')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
 

@@ -7,14 +7,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Favicon icon-->
-  <link rel="shortcut icon" type="image/png" href="{{ asset('admin-asset/images/logos/favicon.png') }}" />
+  <link rel="icon" href="{{ asset('user/img/icon.png') }}" type="image/png" sizes="16x16">
 
   <!-- Core Css -->
   <link rel="stylesheet" href="{{ asset('admin-asset/css/styles.css') }}" />
   <link rel="stylesheet" href="{{ asset('admin-asset/libs/sweetalert2/dist/sweetalert2.min.css') }}">
 
-  <title>Modernize Bootstrap Admin</title>
+  <title>Dashboard Laskar</title>
   <!-- Owl Carousel  -->
   <link rel="stylesheet" href="{{ asset('admin-asset/libs/owl.carousel/dist/admin-asset/owl.carousel.min.css') }}" />
   <!-- Data Table -->
@@ -26,7 +25,7 @@
 <body>
   <!-- Preloader -->
   <div class="preloader">
-    <img src="./admin-asset/images/logos/favicon.png" alt="loader" class="lds-ripple img-fluid" />
+    <img src="{{ asset('user/img/icon.png') }}" alt="loader" class="lds-ripple img-fluid" />
   </div>
   <div id="main-wrapper">
     <!-- Sidebar -->

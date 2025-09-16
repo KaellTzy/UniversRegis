@@ -59,10 +59,10 @@
 
 <body>
 
-    <!--preloader start-->
+      <!--preloader start-->
     <div id="preloader" class="bg-light-subtle">
         <div class="preloader-wrap">
-            <img src="user/img/favicon.png" alt="logo" class="img-fluid preloader-icon">
+            <img src="user/img/icon.png" alt="logo" class="img-fluid preloader-icon">
             <div class="loading-bar"></div>
         </div>
     </div>

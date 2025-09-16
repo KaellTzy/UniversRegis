@@ -42,12 +42,6 @@
                                 </small>
                             </div>
 
-                            {{-- Menu Profil --}}
-                            <div class="px-3 py-2">
-                                <a href="#" class="dropdown-item text-dark d-flex align-items-center">
-                                    Profil
-                                </a>
-                            </div>
                             {{-- Tombol Logout --}}
                             <div class="px-3 pb-3">
                                 <a class="btn btn-outline-primary w-100" href="{{ route('logout') }}"

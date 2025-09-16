@@ -32,10 +32,10 @@
     <meta name="author" content="ThemeTags">
 
     <!--favicon icon-->
-    <link rel="icon" href="user/img/favicon.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="user/img/icon.png" type="image/png" sizes="16x16">
 
     <!--title-->
-    <title>Login - Software & IT Solutions HTML Template</title>
+    <title>Login - Laskar Beasiswa</title>
 
     <!-- Font -->
     <link
@@ -59,10 +59,10 @@
 
 <body>
 
-    <!--preloader start-->
+      <!--preloader start-->
     <div id="preloader" class="bg-light-subtle">
         <div class="preloader-wrap">
-            <img src="user/img/favicon.png" alt="logo" class="img-fluid preloader-icon">
+            <img src="user/img/icon.png" alt="logo" class="img-fluid preloader-icon">
             <div class="loading-bar"></div>
         </div>
     </div>

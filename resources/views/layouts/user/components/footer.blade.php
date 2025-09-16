@@ -12,8 +12,7 @@
                             <img src="user/img/logo-white.png" alt="logo" class="img-fluid logo-white">
                             <img src="user/img/logo-color.png" alt="logo" class="img-fluid logo-color">
                         </div>
-                        <p>Our latest news, articles, and resources, we will sent to
-                            your inbox weekly.</p>
+                        <p>Ubah Mimpi Mu Menjadi Nyata Dengan Laskar Beasiswa.</p>
                         <div class="footer-single-col">
                             <ul class="list-unstyled list-inline footer-social-list mb-0">
                                 <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>

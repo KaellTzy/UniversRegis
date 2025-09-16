@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body">
                 <!-- Form Input Group -->
-                <form action="{{ route('admin.reviewer.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.reviewer.update',$data->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="input-group mb-3">
