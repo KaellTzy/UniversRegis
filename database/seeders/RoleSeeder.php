@@ -17,7 +17,7 @@ class RoleSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'AdminLaskar@admin.org',
             'role' => 'admin',
-            'password' => bcrypt('admin12345678'),
+            'password' => bcrypt('admin1234568'),
         ]);
 
         User::create([

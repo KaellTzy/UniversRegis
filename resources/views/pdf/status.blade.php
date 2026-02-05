@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Status Seleksi - Laskar Beasiswa</title>
+    <title>Status Seleksi - UniversRegis Beasiswa</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;

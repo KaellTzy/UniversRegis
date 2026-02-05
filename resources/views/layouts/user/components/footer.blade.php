@@ -12,7 +12,7 @@
                             <img src="user/img/logo-white.png" alt="logo" class="img-fluid logo-white">
                             <img src="user/img/logo-color.png" alt="logo" class="img-fluid logo-color">
                         </div>
-                        <p>Ubah Mimpi Mu Menjadi Nyata Dengan Laskar Beasiswa.</p>
+                        <p>Ubah Mimpi Mu Menjadi Nyata Dengan UniversRegis Beasiswa.</p>
                         <div class="footer-single-col">
                             <ul class="list-unstyled list-inline footer-social-list mb-0">
                                 <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
@@ -34,8 +34,8 @@
             <div class="row justify-content-between align-items-center">
                 <div class="col-md-7 col-lg-7">
                     <div class="copyright-text">
-                        <p class="mb-lg-0 mb-md-0">&copy; 2025 Quiety Rights Reserved. Designed By <a
-                                href="https://themetags.com/" class="text-decoration-none">Fazli</a></p>
+                        <p class="mb-lg-0 mb-md-0">&copy; 2026 Quiety Rights Reserved. Designed By <a
+                                href="https://themetags.com/" class="text-decoration-none">Raka</a></p>
                     </div>
                 </div>
             </div>

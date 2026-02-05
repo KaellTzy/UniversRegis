@@ -33,7 +33,7 @@
     <link rel="icon" href="user/img/icon.png" type="image/png" sizes="16x16">
 
     <!--title-->
-    <title>Laskar Beasiswa - Ubah Mimpi jadi nyata</title>
+    <title>UniversRegis Beasiswa - Ubah Mimpi jadi nyata</title>
 
     <!-- Font -->
     <link

@@ -101,7 +101,7 @@
                                                     langsung dari akun saya. Terima kasih LASKAR!"
                                                 </blockquote>
                                                 <div class="author-info mt-4">
-                                                    <h6 class="mb-0">Sulis Alisa Putri</h6>
+                                                    <h6 class="mb-0">Mohamed Salah</h6>
                                                     <span>Mahasiswi</span>
                                                 </div>
                                             </div>
@@ -115,7 +115,7 @@
                                                     LASKAR sudah jadi jembatan saya menuju PTN impian."
                                                 </blockquote>
                                                 <div class="author-info mt-4">
-                                                    <h6 class="mb-0">Reza Kecap</h6>
+                                                    <h6 class="mb-0">Bruno Fernandes</h6>
                                                     <span class="small">Mahasigma UGM</span>
                                                 </div>
                                             </div>
@@ -129,7 +129,7 @@
                                                     sekarang saya diterima di universitas negeri berkat LASKAR."
                                                 </blockquote>
                                                 <div class="author-info mt-4">
-                                                    <h6 class="mb-0">Taiki Inomata</h6>
+                                                    <h6 class="mb-0">Rimuru Tempest</h6>
                                                     <span class="small">Mahasiswa IPB</span>
                                                 </div>
                                             </div>
@@ -190,9 +190,7 @@
                                                     class="text-danger">*</span></label>
                                             <div class="input-group mb-3">
                                                 <select name="jalur" class="form-select">
-                                                    <option value="" disabled selected>Pilih</option>
                                                     <option value="SNBT">SNBT</option>
-                                                    <option value="SNBP">SNBP</option>
                                                 </select>
                                             </div>
                                         </div>

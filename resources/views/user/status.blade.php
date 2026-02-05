@@ -235,7 +235,7 @@
                                                 <h5 class="alert-heading mb-1">
                                                     <i class="fas fa-clock me-2"></i>DOKUMEN SEDANG DIPROSES
                                                 </h5>
-                                                <p class="mb-0">Harap menunggu, dokumen Anda sedang dalam tahap verifikasi</p>
+                                                <p class="mb-0">Harap menunggu, dokumen Anda sedang dalam tahap verifikasi.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -246,7 +246,7 @@
                                                 <h5 class="alert-heading mb-1">
                                                     <i class="fas fa-graduation-cap me-2"></i>  DOKUMEN DITERIMA
                                                 </h5>
-                                                <p class="mb-0">Selamat Melaksanakan Ujian</p>
+                                                <p class="mb-0">Selamat, dokumen Anda telah diterima.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -257,7 +257,7 @@
                                                 <h5 class="alert-heading mb-1">
                                                     <i class="fas fa-exclamation-triangle me-2"></i>DOKUMEN DITOLAK
                                                 </h5>
-                                                <p class="mb-0">Dokumen anda telah di verifikasi, Silahkan edit</p>
+                                                <p class="mb-0">Dokumen anda telah ditolak.</p>
                                             </div>
                                         </div>
                                     </div>

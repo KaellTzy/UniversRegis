@@ -35,7 +35,7 @@
     <link rel="icon" href="user/img/icon.png" type="image/png" sizes="16x16">
 
     <!--title-->
-    <title>Biodata - Laskar Beasiswa</title>
+    <title>Biodata - UniversRegis Beasiswa</title>
 
     <!-- Font -->
     <link
@@ -86,13 +86,13 @@
                                         <div class="tab-pane fade show active" id="testimonial-tab-1" role="tabpanel">
                                             <div class="testimonial-tab-content mb-4">
                                                 <blockquote>
-                                                    <h5>Laskar Sangat membantu!</h5>
-                                                    "LASKAR benar-benar membuka jalan saya untuk kuliah di PTN impian.
+                                                    <h5>UniversRegis Sangat membantu!</h5>
+                                                    "UniversRegis benar-benar membuka jalan saya untuk kuliah di PTN impian.
                                                     Proses pendaftaran mudah, informatif, dan saya bisa memantau seleksi
-                                                    langsung dari akun saya. Terima kasih LASKAR!"
+                                                    langsung dari akun saya. Terima kasih UniversRegis!"
                                                 </blockquote>
                                                 <div class="author-info mt-4">
-                                                    <h6 class="mb-0">Sulis Alisa Putri</h6>
+                                                    <h6 class="mb-0">Lionel Messi</h6>
                                                     <span>Mahasiswi</span>
                                                 </div>
                                             </div>
@@ -101,12 +101,12 @@
                                             <div class="testimonial-tab-content mb-4">
                                                 <blockquote>
                                                     <h5>Mudah Digunakan!</h5>
-                                                    "Website LASKAR sangat mudah digunakan. Mulai dari daftar sampai
+                                                    "Website UniversRegis sangat mudah digunakan. Mulai dari daftar sampai
                                                     pengumuman hasil seleksi, semuanya terpantau jelas. Terima kasih
-                                                    LASKAR sudah jadi jembatan saya menuju PTN impian."
+                                                    UniversRegis sudah jadi jembatan saya menuju PTN impian."
                                                 </blockquote>
                                                 <div class="author-info mt-4">
-                                                    <h6 class="mb-0">Reza Kecap</h6>
+                                                    <h6 class="mb-0">Cristiano Ronaldo</h6>
                                                     <span class="small">Mahasigma UGM</span>
                                                 </div>
                                             </div>
@@ -116,11 +116,11 @@
                                                 <blockquote>
                                                     <h5>Jelas Dan Terarah!</h5>
                                                     "Saya sempat ragu daftar beasiswa karena prosesnya rumit. Tapi lewat
-                                                    website LASKAR, semua jadi lebih jelas dan terarah. Alhamdulillah
-                                                    sekarang saya diterima di universitas negeri berkat LASKAR."
+                                                    website UniversRegis, semua jadi lebih jelas dan terarah. Alhamdulillah
+                                                    sekarang saya diterima di universitas negeri berkat UniversRegis."
                                                 </blockquote>
                                                 <div class="author-info mt-4">
-                                                    <h6 class="mb-0">Taiki Inomata</h6>
+                                                    <h6 class="mb-0">Kylian Mbappe</h6>
                                                     <span class="small">Mahasiswa IPB</span>
                                                 </div>
                                             </div>
@@ -233,27 +233,27 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-12">
-                                            <label for="name" class="mb-1">Alamat <span
+                                            <label for="name" class="mb-1">Alamat Domisili<span
                                                     class="text-danger">*</span></label>
                                             <div class="input-group mb-3">
                                                 <textarea name="alamat" class="form-control"
-                                                    placeholder="Alamat"></textarea>
+                                                    placeholder="Alamat Domisili"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
-                                            <label for="name" class="mb-1">Nama Sekolah <span
+                                            <label for="name" class="mb-1">Asal Nama Sekolah <span
                                                     class="text-danger">*</span></label>
                                             <div class="input-group mb-3">
-                                                <input type="text" class="form-control" placeholder="Nama Sekolah"
+                                                <input type="text" class="form-control" placeholder=" Asal Nama Sekolah"
                                                     id="name" required aria-label="name" name="nama_sekolah"
                                                     value="{{ old('nama_lsekolah') }}">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
-                                            <label for="password_confirmation" class="mb-1">Tahun Lulus <span
+                                            <label for="password_confirmation" class="mb-1">Tahun Kelulusan <span
                                                     class="text-danger">*</span></label>
                                             <div class="input-group mb-3">
-                                                <input type="number" class="form-control" placeholder="Tahun Lulus"
+                                                <input type="number" class="form-control" placeholder="Tahun Kelulusan"
                                                     id="password_confirmation" required aria-label="Password"
                                                     name="tahun_lulus">
                                             </div>

@@ -154,9 +154,9 @@
                     <div class="pt-5">
                         <div class="section-heading mb-5">
                             <h5 class="h6 text-primary">Inilah Kami</h5>
-                            <h2>Tentang Laskar #Beasiswa</h2>
+                            <h2>Tentang UniversRegis #Beasiswa</h2>
                             <p>
-                                Laskar Beasiswa adalah gerakan yang membuka akses bagi pelajar berprestasi untuk kuliah di
+                                UniversRegis Beasiswa adalah gerakan yang membuka akses bagi pelajar berprestasi untuk kuliah di
                                 40+ PTN mitra, dengan dukungan beasiswa, pembinaan, dan pendampingan agar siap bersaing dan
                                 berkontribusi.
                             </p>
@@ -216,7 +216,7 @@
                             <div class="d-flex align-items-center mb-3">
                                 <span class="subtitle fw-bold text-primary">Benefit</span>
                             </div>
-                            <h2 class="ins-heading mb-3">Kenapa Bergabung dengan <mark class="text-primary">Laskar
+                            <h2 class="ins-heading mb-3">Kenapa Bergabung dengan <mark class="text-primary">UniversRegis
                                     Beasiswa?.</mark></h2>
                         </div>
                         <ul class="ins-info-list mb-0 list-unstyled">
@@ -268,7 +268,7 @@
                         <span class="circle-shape-left"></span>
                         <span class="circle-shape-top"></span>
                         @guest
-                            <h2 class="ins-heading mb-3">Mari Bergabung Bersama <br> Laskar Beasiswa!</h2>
+                            <h2 class="ins-heading mb-3">Mari Bergabung Bersama <br> UniversRegis Beasiswa!</h2>
                             <a href="{{ route('register') }}" class="ins-btn ins-primary-btn ">Let's get started</a>
                         @else
                             <h2 class="ins-heading mb-3">Cek Status Mu disini!</h2>
@@ -304,13 +304,13 @@
                                 <h5 class="accordion-header" id="faq-1">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapse-1" aria-expanded="true">
-                                        Apa itu Laskar Beasiswa?
+                                        Apa itu UniversRegis Beasiswa?
                                     </button>
                                 </h5>
                                 <div id="collapse-1" class="accordion-collapse collapse show" aria-labelledby="faq-1"
                                     data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        Laskar Beasiswa adalah program beasiswa pendidikan yang bekerja sama dengan lebih
+                                        UniversRegis Beasiswa adalah program beasiswa pendidikan yang bekerja sama dengan lebih
                                         dari 40 Perguruan Tinggi Negeri (PTN) ternama di Indonesia. Program ini tidak hanya
                                         memberikan bantuan biaya kuliah, tetapi juga pendampingan, pelatihan soft skill,
                                         serta akses ke komunitas alumni yang kuat.
@@ -321,13 +321,13 @@
                                 <h5 class="accordion-header" id="faq-2">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapse-2" aria-expanded="false">
-                                        Siapa saja yang bisa mendaftar Laskar Beasiswa?
+                                        Siapa saja yang bisa mendaftar UniversRegis Beasiswa?
                                     </button>
                                 </h5>
                                 <div id="collapse-2" class="accordion-collapse collapse" aria-labelledby="faq-2"
                                     data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        Laskar Beasiswa terbuka untuk pelajar SMA/SMK sederajat kelas 12 dan lulusan tahun
+                                        UniversRegis Beasiswa terbuka untuk pelajar SMA/SMK sederajat kelas 12 dan lulusan tahun
                                         ini yang memiliki semangat tinggi untuk melanjutkan pendidikan ke jenjang perguruan
                                         tinggi, terutama mereka yang memiliki keterbatasan ekonomi namun berprestasi.
                                     </div>
@@ -353,13 +353,13 @@
                                 <h5 class="accordion-header" id="faq-4">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapse-4" aria-expanded="false">
-                                        Bagaimana cara mendaftar Laskar Beasiswa?
+                                        Bagaimana cara mendaftar UniversRegis Beasiswa?
                                     </button>
                                 </h5>
                                 <div id="collapse-4" class="accordion-collapse collapse" aria-labelledby="faq-4"
                                     data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        Pendaftaran dilakukan secara online melalui website resmi Laskar Beasiswa. Peserta
+                                        Pendaftaran dilakukan secara online melalui website resmi UniversRegis Beasiswa. Peserta
                                         harus mengisi formulir, melampirkan dokumen yang diperlukan, dan mengikuti proses
                                         seleksi seperti tes snbt
                                     </div>

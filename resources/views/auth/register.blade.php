@@ -92,7 +92,7 @@
                                                     langsung dari akun saya. Terima kasih LASKAR!"
                                                 </blockquote>
                                                 <div class="author-info mt-4">
-                                                    <h6 class="mb-0">Sulis Alisa Putri</h6>
+                                                    <h6 class="mb-0">Veldora Tempest</h6>
                                                     <span>Mahasiswi</span>
                                                 </div>
                                             </div>
@@ -106,7 +106,7 @@
                                                     LASKAR sudah jadi jembatan saya menuju PTN impian."
                                                 </blockquote>
                                                 <div class="author-info mt-4">
-                                                    <h6 class="mb-0">Reza Kecap</h6>
+                                                    <h6 class="mb-0">Yuki Kagurazaka</h6>
                                                     <span class="small">Mahasigma UGM</span>
                                                 </div>
                                             </div>
@@ -120,7 +120,7 @@
                                                     sekarang saya diterima di universitas negeri berkat LASKAR."
                                                 </blockquote>
                                                 <div class="author-info mt-4">
-                                                    <h6 class="mb-0">Taiki Inomata</h6>
+                                                    <h6 class="mb-0">Raizel Vanhoutten</h6>
                                                     <span class="small">Mahasiswa IPB</span>
                                                 </div>
                                             </div>

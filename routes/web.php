@@ -20,9 +20,11 @@ Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Route Admin/Reviewer 
+// Route Admin/Reviewer
 Route::prefix('dashboard')->as('admin.')->middleware(['auth', role::class])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('index');
+    // TAMBAHKAN INI SEBELUM RESOURCE DOKUMEN
+    Route::get('dokumen/{id}/nilai', [DokumenController::class, 'nilai'])->name('dokumen.nilai');
     Route::resource('reviewer', ReviewerController::class);
     Route::resource('prodi', ProdiController::class);
     Route::resource('universitas', UniversitasController::class);

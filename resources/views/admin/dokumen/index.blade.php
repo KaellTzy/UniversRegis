@@ -29,7 +29,7 @@
         </div>
         <!-- End Header -->
 
-              <!-- Action List -->
+        <!-- Action List -->
         <div class="card">
             <div class="card-body">
                 <div class="d-sm-flex justify-content-between align-items-start">
@@ -39,10 +39,11 @@
                     </div>
 
                     <div class="action">
-                        <a href="{{ route('admin.dokumen.export') }}" type="button" class="btn btn-success btn-md text-white "><i
-                                class=" ti ti-file-spreadsheet"></i>
+                        <a href="{{ route('admin.dokumen.export') }}" type="button"
+                            class="btn btn-success btn-md text-white "><i class=" ti ti-file-spreadsheet"></i>
                             Export Excel</a>
-                        <a href="{{ route('admin.dokumen.exportPDF') }}" type="button" class="btn btn-danger btn-md text-white "><i class=" ti ti-file-text"></i>
+                        <a href="{{ route('admin.dokumen.exportPDF') }}" type="button"
+                            class="btn btn-danger btn-md text-white "><i class=" ti ti-file-text"></i>
                             Export PDF</a>
                     </div>
                 </div>
@@ -65,7 +66,6 @@
                                 <th>Jalur</th>
                                 <th>Biodata</th>
                                 <th>Dokumen</th>
-                                <th>Reviewer</th>
                                 <th>Action</th>
                             </tr>
                             <!-- end row -->
@@ -78,7 +78,8 @@
                                     <td>{{ $data->kode_seleksi }}</td>
                                     <td>{{ $data->peserta->nama_lengkap }}</td>
                                     <td>
-                                        <span class="badge 
+                                        <span
+                                            class="badge
                                             {{ $data->jalur == 'SNBT' ? 'bg-info' : 'bg-success' }}">
                                             {{ $data->jalur }}
                                         </span>
@@ -88,28 +89,30 @@
                                             Cek Biodata
                                         </a>
                                     </td>
-                                    <td> <a type="button" class="btn btn-sm btn-success" href="{{ route('admin.dokumen.show',$data->id) }}">
+                                    <td> <a type="button" class="btn btn-sm btn-success"
+                                            href="{{ route('admin.dokumen.show', $data->id) }}">
                                             Cek Dokumen
                                         </a>
                                     </td>
-                                    <td></td>
                                     <td>
                                         <form action="{{ route('admin.dokumen.destroy', $data->id) }}" method="POST">
-                                            <a type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                                data-bs-target="#edit-{{ $data->id }}">
+                                            <a href="{{ route('admin.dokumen.nilai', $data->id) }}"
+                                                class="btn btn-warning">
                                                 <i class="ti ti-pencil"></i>
                                             </a>
+
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger"
-                                                onclick="return confirm('Are you sure?')"><i class="ti ti-trash"></i></button>
+                                                onclick="return confirm('Are you sure?')">
+                                                <i class="ti ti-trash"></i>
+                                            </button>
                                         </form>
                                     </td>
                                 </tr>
                                 <!-- Biodata Modal Form -->
                                 @include('layouts.admin.modal.dokumen.biodata')
                                 <!-- End Biodata Modal -->
-
                             @endforeach
                             <!-- end row -->
                         </tbody>

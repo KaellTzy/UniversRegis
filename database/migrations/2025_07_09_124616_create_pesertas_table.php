@@ -14,14 +14,14 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('nama_lengkap');
-            $table->integer('nisn')->unique();
-            $table->integer('nik')->unique();
+            $table->string('nisn')->unique();
+            $table->string('nik')->unique();
             $table->string('jenis_kelamin');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->text('alamat');
             $table->string('nama_sekolah');
-            $table->integer('npsn');
+            $table->string('npsn')->unique();
             $table->integer('tahun_lulus');
             $table->string('no_hp')->unique();
             $table->timestamps();

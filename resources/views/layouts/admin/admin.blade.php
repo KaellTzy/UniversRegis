@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="{{ asset('admin-asset/css/styles.css') }}" />
   <link rel="stylesheet" href="{{ asset('admin-asset/libs/sweetalert2/dist/sweetalert2.min.css') }}">
 
-  <title>Dashboard Laskar</title>
+  <title>Dashboard UniversRegis Beasiswa</title>
   <!-- Owl Carousel  -->
   <link rel="stylesheet" href="{{ asset('admin-asset/libs/owl.carousel/dist/admin-asset/owl.carousel.min.css') }}" />
   <!-- Data Table -->

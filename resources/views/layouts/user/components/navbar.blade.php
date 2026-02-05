@@ -13,7 +13,7 @@
             <div class="collapse navbar-collapse justify-content-center">
                 <ul class="nav col-12 col-md-auto justify-content-center main-menu">
                     <li><a href="{{ url('/') }}" class="nav-link">Beranda</a></li>
-                    <li><a href="#tentang" class="nav-link">Tentang Laskar</a></li>
+                    <li><a href="#tentang" class="nav-link">Tentang UniversRegis</a></li>
                     <li><a href="#benefit" class="nav-link">Benefit</a></li>
                     <li><a href="#daftar" class="nav-link">Daftar Beasiswa</a></li>
                     <li><a href="#faq" class="nav-link">Faq</a></li>

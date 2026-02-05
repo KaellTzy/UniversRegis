@@ -5,7 +5,7 @@
     <!-- ---------------------------------- -->
     <div class="brand-logo d-flex align-items-center justify-content-between">
       <a href="{{ route('admin.index') }}" class="text-nowrap logo-img mt-3">
-        <img src="{{ asset('admin-asset/images/logo-color.png') }}" class="light-dark" alt="Logo-light" />
+        <img src="{{ asset('admin-asset/images/icon.png') }}" class="light-dark" alt="Logo-light" />
       </a>
       <a href="javascript:void(0)" class="sidebartoggler ms-auto text-decoration-none fs-5 d-block d-xl-none">
         <i class="ti ti-x"></i>
@@ -104,7 +104,7 @@
       <!-- End Reviewer -->
     @endif
       </ul>
-      
+
     </nav>
     <!-- ---------------------------------- -->
     <!-- END OF MENU -->
