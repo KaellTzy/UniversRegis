@@ -2,300 +2,265 @@
 <html lang="en" data-bs-theme="light">
 
 <head>
-    <!--required meta tags-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Biodata - UniversRegis</title>
 
-    <!--twitter og-->
-    <meta name="twitter:site" content="@themetags">
-    <meta name="twitter:creator" content="@themetags">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Quiety - Creative SAAS Technology & IT Solutions Bootstrap 5 HTML Template">
-    <meta name="twitter:description"
-        content="Quiety creative Saas, software technology, Saas agency & business Bootstrap 5 Html template. It is best and famous software company and Saas website template.">
-    <meta name="twitter:image" content="#">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!--facebook og-->
-    <meta property="og:url" content="#">
-    <meta name="twitter:title" content="Quiety - Creative SAAS Technology & IT Solutions Bootstrap 5 HTML Template">
-    <meta property="og:description"
-        content="Quiety creative Saas, software technology, Saas agency & business Bootstrap 5 Html template. It is best and famous software company and Saas website template.">
-    <meta property="og:image" content="#">
-    <meta property="og:image:secure_url" content="#">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="600">
+    <link rel="stylesheet" href="{{ asset('user/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('user/css/custom.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
-    <!--meta-->
-    <meta name="description"
-        content="Quiety creative Saas, software technology, Saas agency & business Bootstrap 5 Html template. It is best and famous software company and Saas website template.">
-    <meta name="author" content="ThemeTags">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            --bg-color: #0b0f1a;
+            --glass-bg: rgba(255, 255, 255, 0.98);
+        }
 
-     <!--favicon icon-->
-    <link rel="icon" href="user/img/icon.png" type="image/png" sizes="16x16">
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            overflow-x: hidden;
+        }
 
-    <!--title-->
-    <title>Biodata - UniversRegis Beasiswa</title>
+        #meteorCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; }
 
-    <!-- Font -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap"
-        rel="stylesheet">
+        .sign-up-in-section {
+            background: radial-gradient(circle at 15% 15%, rgba(79, 70, 229, 0.15) 0%, transparent 40%),
+                        radial-gradient(circle at 85% 85%, rgba(124, 58, 237, 0.15) 0%, transparent 40%) !important;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 60px 0;
+        }
 
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap" rel="stylesheet">
-    <!-- Font -->
+        /* --- LOGO SIZE --- */
+        .logo-small { max-width: 120px; margin-bottom: 1.5rem; filter: drop-shadow(0 5px 15px rgba(79, 70, 229, 0.3)); }
 
-    <!--build:css-->
-    <link rel="stylesheet" href="user/css/main.css">
-    <!-- endbuild -->
+        /* --- CONTAINER FORM DIPERKECIL --- */
+        .form-card-custom {
+            background: var(--glass-bg) !important;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-top: 5px solid #4f46e5;
+            border-radius: 25px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            padding: 2.5rem 2rem !important; /* Padding disesuaikan */
+            z-index: 1;
+        }
 
-    <!--custom css start-->
-    <link rel="stylesheet" href="user/css/custom.css">
-    <!--custom css end-->
+        .form-label-custom { font-weight: 700; color: #1f2937; font-size: 0.82rem; margin-bottom: 6px; display: block; }
 
+        .form-control {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 10px 15px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus { border-color: #4f46e5; background: #fff; box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1); }
+
+        /* --- GENDER CARDS --- */
+        .gender-group { display: flex; gap: 12px; }
+        .gender-option { flex: 1; position: relative; }
+        .gender-option input { position: absolute; opacity: 0; width: 0; height: 0; }
+        .gender-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .gender-card i { font-size: 1.1rem; color: #94a3b8; }
+        .gender-card span { font-size: 0.85rem; font-weight: 700; color: #64748b; }
+        .gender-option input:checked + .gender-card {
+            background: #fff;
+            border-color: #7c3aed;
+            box-shadow: 0 8px 15px rgba(124, 58, 237, 0.1);
+        }
+        .gender-option input:checked + .gender-card i,
+        .gender-option input:checked + .gender-card span { color: #4f46e5; }
+
+        .btn-submit {
+            background: var(--primary-gradient);
+            border: none;
+            border-radius: 12px;
+            padding: 14px;
+            font-weight: 800;
+            color: white !important;
+            transition: 0.3s;
+            font-size: 1rem;
+        }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3); }
+
+        .section-divider {
+            font-size: 0.7rem; font-weight: 800; color: #4f46e5;
+            text-transform: uppercase; letter-spacing: 1.2px;
+            margin: 20px 0 15px 0; display: flex; align-items: center; gap: 10px;
+        }
+        .section-divider::after { content: ''; flex: 1; height: 1px; background: #e2e8f0; }
+
+        #preloader { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--bg-color); z-index: 9999; display: flex; align-items: center; justify-content: center; }
+    </style>
 </head>
 
 <body>
+    <canvas id="meteorCanvas"></canvas>
 
-   <!--preloader start-->
-    <div id="preloader" class="bg-light-subtle">
-        <div class="preloader-wrap">
-            <img src="user/img/icon.png" alt="logo" class="img-fluid preloader-icon">
+    <div id="preloader">
+        <div class="text-center">
+            <img src="{{ asset('user/img/icon.png') }}" width="45" class="mb-2">
             <div class="loading-bar"></div>
         </div>
     </div>
-    <!--preloader end-->
-    <!--main content wrapper start-->
-    <div class="main-wrapper">
 
-        <!--register section start-->
-        <section class="sign-up-in-section bg-dark ptb-60"
-            style="background: url('user/img/page-header-bg.svg')no-repeat right bottom">
+    <div class="main-wrapper">
+        <section class="sign-up-in-section">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-lg-10 col-12">
-                        <div class="pricing-content-wrap bg-custom-light rounded-custom shadow-lg">
-                            <div
-                                class="price-feature-col pricing-feature-info text-white left-radius p-5 order-1 order-lg-0">
-                                <a href="#" class="mb-5 d-none d-xl-block d-lg-block"><img
-                                        src="user/img/logo-white.png" alt="logo" class="img-fluid"></a>
-                                <div class="customer-testimonial-wrap mt-60">
-                                    <div class="tab-content" id="nav-tabContent">
-                                        <div class="tab-pane fade show active" id="testimonial-tab-1" role="tabpanel">
-                                            <div class="testimonial-tab-content mb-4">
-                                                <blockquote>
-                                                    <h5>UniversRegis Sangat membantu!</h5>
-                                                    "UniversRegis benar-benar membuka jalan saya untuk kuliah di PTN impian.
-                                                    Proses pendaftaran mudah, informatif, dan saya bisa memantau seleksi
-                                                    langsung dari akun saya. Terima kasih UniversRegis!"
-                                                </blockquote>
-                                                <div class="author-info mt-4">
-                                                    <h6 class="mb-0">Lionel Messi</h6>
-                                                    <span>Mahasiswi</span>
+                    <div class="col-xl-6 col-lg-8 col-md-10">
+
+                        <div class="text-center" data-aos="fade-down">
+                            <a href="/"><img src="{{ asset('user/img/logo-white.png') }}" alt="logo" class="logo-small"></a>
+                        </div>
+
+                        <div class="form-card-custom" data-aos="fade-up">
+                            <div class="text-center mb-4">
+                                <h4 class="fw-800 text-dark mb-1">Formulir Biodata</h4>
+                                <p class="text-muted small">Lengkapi seluruh kolom di bawah ini.</p>
+                            </div>
+
+                            <form action="{{ route('form-peserta.store') }}" method="POST">
+                                @csrf
+                                <div class="row">
+                                    <div class="section-divider">Data Diri</div>
+
+                                    <div class="col-12 mb-3">
+                                        <label class="form-label-custom">Nama Lengkap <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" placeholder="Nama Sesuai KTP" required name="nama_lengkap" value="{{ old('nama_lengkap') }}">
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label-custom">NISN <span class="text-danger">*</span></label>
+                                        <input type="number" class="form-control" placeholder="NISN" required name="nisn">
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label-custom">NIK <span class="text-danger">*</span></label>
+                                        <input type="number" class="form-control" placeholder="NIK" required name="nik">
+                                    </div>
+
+                                    <div class="col-12 mb-3">
+                                        <label class="form-label-custom">Jenis Kelamin <span class="text-danger">*</span></label>
+                                        <div class="gender-group">
+                                            <label class="gender-option">
+                                                <input type="radio" name="jenis_kelamin" value="Laki-laki" required>
+                                                <div class="gender-card">
+                                                    <i class="fa-solid fa-mars"></i><span>Laki-laki</span>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="testimonial-tab-2" role="tabpanel">
-                                            <div class="testimonial-tab-content mb-4">
-                                                <blockquote>
-                                                    <h5>Mudah Digunakan!</h5>
-                                                    "Website UniversRegis sangat mudah digunakan. Mulai dari daftar sampai
-                                                    pengumuman hasil seleksi, semuanya terpantau jelas. Terima kasih
-                                                    UniversRegis sudah jadi jembatan saya menuju PTN impian."
-                                                </blockquote>
-                                                <div class="author-info mt-4">
-                                                    <h6 class="mb-0">Cristiano Ronaldo</h6>
-                                                    <span class="small">Mahasigma UGM</span>
+                                            </label>
+                                            <label class="gender-option">
+                                                <input type="radio" name="jenis_kelamin" value="Perempuan">
+                                                <div class="gender-card">
+                                                    <i class="fa-solid fa-venus"></i><span>Perempuan</span>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="testimonial-tab-3" role="tabpanel">
-                                            <div class="testimonial-tab-content mb-4">
-                                                <blockquote>
-                                                    <h5>Jelas Dan Terarah!</h5>
-                                                    "Saya sempat ragu daftar beasiswa karena prosesnya rumit. Tapi lewat
-                                                    website UniversRegis, semua jadi lebih jelas dan terarah. Alhamdulillah
-                                                    sekarang saya diterima di universitas negeri berkat UniversRegis."
-                                                </blockquote>
-                                                <div class="author-info mt-4">
-                                                    <h6 class="mb-0">Kylian Mbappe</h6>
-                                                    <span class="small">Mahasiswa IPB</span>
-                                                </div>
-                                            </div>
+                                            </label>
                                         </div>
                                     </div>
-                                    <ul class="nav testimonial-tab-list mt-5" id="nav-tab" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="active" href="#testimonial-tab-1" data-bs-toggle="tab"
-                                                data-bs-target="#testimonial-tab-1" role="tab" aria-selected="true">
-                                                <img src="user/img/testimonial/1.jpg" class="img-fluid rounded-circle"
-                                                    width="60" alt="user">
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#testimonial-tab-2" data-bs-toggle="tab"
-                                                data-bs-target="#testimonial-tab-2" role="tab" aria-selected="false">
-                                                <img src="user/img/testimonial/2.jpg" class="img-fluid rounded-circle"
-                                                    width="60" alt="user">
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#testimonial-tab-3" data-bs-toggle="tab"
-                                                data-bs-target="#testimonial-tab-3" role="tab" aria-selected="false">
-                                                <img src="user/img/testimonial/3.jpg" class="img-fluid rounded-circle"
-                                                    width="60" alt="user">
-                                            </a>
-                                        </li>
 
-                                    </ul>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label-custom">Tempat Lahir</label>
+                                        <input type="text" class="form-control" placeholder="Tempat Lahir" required name="tempat_lahir">
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label-custom">Tanggal Lahir</label>
+                                        <input type="date" class="form-control" required name="tanggal_lahir">
+                                    </div>
+
+                                    <div class="col-12 mb-3">
+                                        <label class="form-label-custom">No Handphone (WA)</label>
+                                        <input type="number" class="form-control" placeholder="08..." required name="no_hp">
+                                    </div>
+
+                                    <div class="col-12 mb-3">
+                                        <label class="form-label-custom">Alamat Domisili</label>
+                                        <textarea name="alamat" class="form-control" placeholder="Alamat Lengkap" rows="2" required></textarea>
+                                    </div>
+
+                                    <div class="section-divider">Sekolah</div>
+
+                                    <div class="col-12 mb-3">
+                                        <label class="form-label-custom">Asal Sekolah</label>
+                                        <input type="text" class="form-control" placeholder="Nama Sekolah" required name="nama_sekolah">
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label-custom">Tahun Lulus</label>
+                                        <input type="number" class="form-control" placeholder="2024" required name="tahun_lulus">
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label-custom">NPSN</label>
+                                        <input type="number" class="form-control" placeholder="Kode NPSN" required name="npsn">
+                                    </div>
+
+                                    <div class="col-12 mt-3">
+                                        <button type="submit" class="btn btn-submit w-100">Kirim Data</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div
-                                class="price-feature-col pricing-action-info p-5 right-radius bg-light-subtle order-0 order-lg-1">
-                                <a href="index.html" class="mb-5 d-block d-xl-none d-lg-none"><img
-                                        src="user/img/logo-color.png" alt="logo" class="img-fluid"></a>
-                                <h1 class="h3">Isi Data Diri</h1>
-
-                                <form action="{{ route('form-peserta.store') }}" method="POST"
-                                    class="mt-5 register-form">
-                                    @csrf
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <label for="name" class="mb-1">Nama Lengkap <span
-                                                    class="text-danger">*</span></label>
-                                            <div class="input-group mb-3">
-                                                <input type="text" class="form-control" placeholder="Nama Lengkap"
-                                                    id="name" required aria-label="name" name="nama_lengkap"
-                                                    value="{{ old('nama_lengkap') }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <label for="password" class="mb-1">NISN <span
-                                                    class="text-danger">*</span></label>
-                                            <div class="input-group mb-3">
-                                                <input type="number" class="form-control" placeholder="NISN"
-                                                    id="password" required aria-label="Password" name="nisn">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <label for="password_confirmation" class="mb-1">NIK <span
-                                                    class="text-danger">*</span></label>
-                                            <div class="input-group mb-3">
-                                                <input type="number" class="form-control" placeholder="NIK"
-                                                    id="password_confirmation" required aria-label="Password"
-                                                    name="nik">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <label for="password_confirmation" class="mb-1">Jenis Kelamin <span
-                                                    class="text-danger">*</span> : </label>
-                                            <div class="form-check ">
-                                                <input class="form-check-input" type="radio" name="jenis_kelamin"
-                                                    id="jenis_kelamin" value="Laki-laki">
-                                                <label class="form-check-label" for="jenis_kelamin">
-                                                    Laki - Laki
-                                                </label>
-                                            </div>
-                                            <div class="form-check ">
-                                                <input class="form-check-input" type="radio" name="jenis_kelamin"
-                                                    id="jenis_kelamin" value="Perempuan">
-                                                <label class="form-check-label" for="jenis_kelamin">
-                                                    Perempuan
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <label for="name" class="mb-1">Tempat Lahir <span
-                                                    class="text-danger">*</span></label>
-                                            <div class="input-group mb-3">
-                                                <input type="text" class="form-control" placeholder="Tempat Lahir"
-                                                    id="name" required aria-label="name" name="tempat_lahir"
-                                                    value="{{ old('tempat_lahir') }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <label for="name" class="mb-1">Tanggal Lahir <span
-                                                    class="text-danger">*</span></label>
-                                            <div class="input-group mb-3">
-                                                <input type="date" class="form-control" placeholder="Tanggal Lahir"
-                                                    id="name" required aria-label="name" name="tanggal_lahir">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <label for="password_confirmation" class="mb-1">No Handphone <span
-                                                    class="text-danger">*</span></label>
-                                            <div class="input-group mb-3">
-                                                <input type="number" class="form-control" placeholder="No Handphone"
-                                                    id="password_confirmation" required aria-label="Password"
-                                                    name="no_hp">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <label for="name" class="mb-1">Alamat Domisili<span
-                                                    class="text-danger">*</span></label>
-                                            <div class="input-group mb-3">
-                                                <textarea name="alamat" class="form-control"
-                                                    placeholder="Alamat Domisili"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <label for="name" class="mb-1">Asal Nama Sekolah <span
-                                                    class="text-danger">*</span></label>
-                                            <div class="input-group mb-3">
-                                                <input type="text" class="form-control" placeholder=" Asal Nama Sekolah"
-                                                    id="name" required aria-label="name" name="nama_sekolah"
-                                                    value="{{ old('nama_lsekolah') }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <label for="password_confirmation" class="mb-1">Tahun Kelulusan <span
-                                                    class="text-danger">*</span></label>
-                                            <div class="input-group mb-3">
-                                                <input type="number" class="form-control" placeholder="Tahun Kelulusan"
-                                                    id="password_confirmation" required aria-label="Password"
-                                                    name="tahun_lulus">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <label for="password_confirmation" class="mb-1">NPSN <span
-                                                    class="text-danger">*</span></label>
-                                            <div class="input-group mb-3">
-                                                <input type="number" class="form-control" placeholder="NPSN"
-                                                    id="password_confirmation" required aria-label="Password"
-                                                    name="npsn">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <button type="submit"
-                                                class="btn btn-primary mt-4 d-block w-100">Submit</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!--register section end-->
-
     </div>
-    <!--main content wrapper end-->
 
-
-    <!--build:js-->
     <script src="{{ asset('user/js/vendors/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('user/js/vendors/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('user/js/vendors/swiper-bundle.min.js') }}"></script>
-    <script src="{{ asset('user/js/vendors/jquery.magnific-popup.min.js') }}"></script>
-    <script src="{{ asset('user/js/vendors/parallax.min.js') }}"></script>
-    <script src="{{ asset('user/js/vendors/aos.js') }}"></script>
-    <script src="{{ asset('user/js/vendors/massonry.min.js') }}"></script>
-    <script src="{{ asset('user/js/app.js') }}"></script>
-    <!--endbuild-->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        const canvas = document.getElementById('meteorCanvas');
+        const ctx = canvas.getContext('2d');
+        let meteors = [];
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        class Meteor {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * canvas.width + 200;
+                this.y = Math.random() * canvas.height - 200;
+                this.speed = Math.random() * 5 + 2;
+                this.len = Math.random() * 100 + 50;
+                this.opacity = Math.random() * 0.5;
+            }
+            draw() {
+                ctx.save();
+                ctx.strokeStyle = `rgba(124, 58, 237, ${this.opacity})`;
+                ctx.lineWidth = 2;
+                ctx.beginPath(); ctx.moveTo(this.x, this.y); ctx.lineTo(this.x - this.len, this.y + this.len); ctx.stroke();
+                ctx.restore();
+            }
+            update() { this.x -= this.speed; this.y += this.speed; if (this.y > canvas.height + 100 || this.x < -100) this.reset(); }
+        }
+        for (let i = 0; i < 20; i++) meteors.push(new Meteor());
+        function loop() { ctx.clearRect(0, 0, canvas.width, canvas.height); meteors.forEach(m => { m.update(); m.draw(); }); requestAnimationFrame(loop); }
+        window.addEventListener('resize', resize);
+        resize(); loop();
+        $(window).on('load', function() { $('#preloader').fadeOut(); });
+        $(document).ready(function () { AOS.init({ duration: 800, once: true }); });
+    </script>
 </body>
-
 </html>

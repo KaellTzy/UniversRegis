@@ -1,380 +1,619 @@
 @extends('layouts.user.user')
+
 @section('content')
-    <!--hero section start-->
-    <section class="ins-hero-section position-relative overflow-hidden">
-        <img src="{{ asset('user/img/shape/gradient-rectangle-1.png') }}" alt="shape"
-            class="position-absolute rectangle-shape start-0 top-0">
-        <img src="{{ asset('user/img/shape/gradient-rectangle-2.png') }}" alt="shape"
-            class="position-absolute rectangle-shape end-0 top-0">
-        <img src="{{ asset('user/img/shape/ins-primary-circle.png') }}" alt="not found"
-            class="position-absolute start-0 bottom-0 translate-middle-x">
-        <img src="{{ asset('user/img/shape/hero-curve.png') }}" alt="not found"
-            class="position-absolute start-0 bottom-0 ins-hero-curve w-100">
-        <img src="{{ asset('user/img/shape/arrow-shape.png') }}" alt="not found"
-            class="position-absolute arrow-shape d-none d-sm-block">
-        <span
-            class="heart-sign bg-white position-absolute d-inline-flex align-items-center justify-content-center text-danger rounded-circle"><i
-                class="fa-solid fa-heart"></i></span>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-8">
-                    <div class="ins-hero-content text-center">
-                        <div class="ins-title text-center">
-                            <p>#Beasiswa no 1 di Indonesia</p>
-                            <h1 class="display-2 ins-heading mb-20 fw-semibold">Buat Mimpi mu menjadi <mark>Nyata.</mark>
-                            </h1>
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Hero Styling */
+        .ins-hero-section {
+            background:
+                radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(124, 58, 237, 0.08) 0%, transparent 50%);
+            padding: 160px 0 100px 0;
+            overflow: hidden;
+        }
+
+        .ins-heading mark {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            padding: 0;
+        }
+
+        /* Floating Animation */
+        .hero-img-anim {
+            animation: floating 6s ease-in-out infinite;
+            filter: drop-shadow(0 20px 40px rgba(79, 70, 229, 0.2));
+        }
+
+        @keyframes floating {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(1.5deg);
+            }
+        }
+
+        /* Modern Glass Card */
+        .modern-glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modern-glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(79, 70, 229, 0.15);
+        }
+
+        /* Button Styling */
+        .ins-primary-btn {
+            background: var(--primary-gradient);
+            border: none;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            color: white !important;
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .ins-primary-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(79, 70, 229, 0.4);
+        }
+
+        /* FAQ Accordion Modern */
+        .accordion-item {
+            border: none !important;
+            margin-bottom: 15px;
+            border-radius: 15px !important;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .accordion-button:not(.collapsed) {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        /* Badge Custom */
+        .badge-soft {
+            background: rgba(79, 70, 229, 0.1);
+            color: #4f46e5;
+            font-weight: 700;
+            padding: 8px 20px;
+        }
+    </style>
+    <br><br>
+    <section class="ins-hero-section position-relative py-5 overflow-hidden" id="beranda">
+        <div class="hero-blob"></div>
+
+        <div class="container pt-5">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-xl-10 text-center">
+                    <div data-aos="fade-up" data-aos-duration="1000">
+                        <span class="badge rounded-pill badge-soft mb-4 animate__animated animate__fadeIn">
+                            ✨ #Beasiswa No 1 di Indonesia
+                        </span>
+
+                        <h1 class="display-1 fw-800 mb-4 tracking-tight">
+                            Wujudkan Mimpi Kuliahmu <br>
+                            Menjadi <span class="hero-gradient-text">Nyata.</span>
+                        </h1>
+
+                        <p class="lead text-muted mb-5 px-lg-5 mx-auto" style="max-width: 800px; font-size: 1.25rem;">
+                            UniversRegis adalah jembatan emas bagi ribuan pelajar Indonesia untuk menaklukkan Kampus Impian
+                            dengan pendampingan eksklusif dan beasiswa penuh.
+                        </p>
+
+                        <div class="d-flex justify-content-center gap-3">
                             @guest
-                                <a href="{{ route('register') }}" class="ins-btn ins-primary-btn ">Let's get started</a>
+                                <a href="{{ route('register') }}" class="ins-primary-btn">
+                                    Mulai Perjalananmu <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
                             @else
-                                <a href="{{ route('user.status') }}" class="ins-btn ins-primary-btn">
+                                <a href="{{ route('user.status') }}" class="ins-primary-btn">
                                     Cek Status
                                 </a>
                             @endguest
                         </div>
-                        <img src="{{ asset('user/img/people-bg.png') }}" alt="not found"
-                            class="img-fluid mt-5 position-relative">
+                    </div>
+
+                    <div class="mt-5 pt-4 hero-img-anim" data-aos="zoom-in-up" data-aos-delay="400">
+                        <img src="{{ asset('user/img/people-bg.png') }}" alt="Hero Students" class="img-fluid main-hero-img"
+                            style="max-height: 550px;">
+
+                        <div class="d-none d-lg-block position-absolute top-50 start-0 translate-middle-y">
+                            <div class="modern-glass-card p-3 shadow-sm rotate-n-15">
+                                <span class="fw-bold text-primary">✓ 5000+ Students</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-    </section> <!--hero section end-->
+    <section class="pb-100">
+        <div class="container">
+            <div class="modern-glass-card p-4 mb-5" data-aos="fade-up">
+                <div class="row text-center g-4">
+                    <div class="col-md-4">
+                        <h2 class="fw-800 mb-0" style="color: #4f46e5;">5.000+</h2>
+                        <p class="text-muted fw-bold small text-uppercase">Peserta Lolos</p>
+                    </div>
+                    <div class="col-md-4 border-start border-end border-light">
+                        <h2 class="fw-800 mb-0" style="color: #7c3aed;">90%</h2>
+                        <p class="text-muted fw-bold small text-uppercase">Kepuasan Peserta</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h2 class="fw-800 mb-0" style="color: #4f46e5;">40+</h2>
+                        <p class="text-muted fw-bold small text-uppercase">PTN Mitra</p>
+                    </div>
+                </div>
+            </div>
 
-    <!--service section start-->
-    <section class="ins-service-section pb-120">
-        <div class="container" >
-            <div class="ins-service-top pb-120">
-                <div class="row justify-content-between g-4">
-                    <div class="col-xxl-4 col-xl-5 col-lg-6">
-                        <div class="ins-service-contact bg-white rounded">
+            <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="100">
+                <h6 class="text-muted small fw-bold text-uppercase mb-4">Dipercaya oleh Mahasiswa dari Universitas Terbaik
+                </h6>
+                <div class="swiper ins-brand-slider">
+                    <div class="swiper-wrapper align-items-center">
+                        @php $logos = ['ui','ugm','itb','unair','ipb','its','unpad','undip','ub','binus']; @endphp
+                        @foreach ($logos as $logo)
+                            <div class="swiper-slide text-center">
+                                <img src="{{ asset('user/img/clients/logo-' . $logo . '.png') }}" alt="{{ $logo }}"
+                                    style="height: 45px; filter: grayscale(100%); opacity: 0.6; transition: 0.3s;"
+                                    onmouseover="this.style.filter='grayscale(0%)'; this.style.opacity='1'"
+                                    onmouseout="this.style.filter='grayscale(100%)'; this.style.opacity='0.6'">
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 overflow-hidden position-relative" id="tentang">
+        <div class="blob-decor"></div>
+
+        <div class="container py-lg-5">
+            <div class="row align-items-center g-5">
+
+                <div class="col-lg-6" data-aos="zoom-in-right">
+                    <div class="position-relative p-4">
+                        <div class="rounded-5 overflow-hidden shadow-2xl position-relative z-index-1"
+                            style="border: 8px solid white;">
+                            <img src="{{ asset('user/img/bg.png') }}" class="img-fluid w-100" alt="About Image"
+                                style="transition: transform 0.5s ease;" onmouseover="this.style.transform='scale(1.05)'"
+                                onmouseout="this.style.transform='scale(1)'">
+                        </div>
+
+                        <div class="position-absolute bottom-0 start-0 mb-n4 ms-n2 p-4 modern-glass-card d-none d-md-block animate__animated animate__fadeInUp"
+                            style="width: 260px; z-index: 2;">
                             <div class="d-flex align-items-center">
-                                <span class="icon-wrapper d-flex align-items-center justify-content-center rounded">
-                                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-
-                                    </svg>
-                                </span>
-                                <div class="ins-srv-right ms-3">
-                                    <span class="fw-semibold">Peserta Lolos</span>
-                                    <h1 class="ins-heading mt-1">5.000</h1>
+                                <div class="bg-primary text-white rounded-3 p-3 me-3">
+                                    <i class="fas fa-graduation-cap fs-4"></i>
                                 </div>
-                                <div class="ins-srv-right ms-5">
-                                    <span class="fw-semibold">Kepuasan Peserta</span>
-                                    <h1 class="ins-heading mt-1">90%</h1>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-7 col-lg-6 align-self-end">
-                        <div class="ins-brands mt-4 mt-lg-0">
-                            <div class="d-flex align-items-center justify-content-sm-end justify-content-center">
-                                <span class="me-1 d-none d-sm-block">
-                                    <svg width="141" height="13" viewBox="0 0 141 13" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M140.86 6.39014H6.42745" stroke="#0EE7C5" stroke-width="1.49369" />
-                                        <path d="M0.451783 6.38949L9.41393 1.2152L9.41393 11.5638L0.451783 6.38949Z"
-                                            fill="#0EE7C5" />
-                                    </svg>
-                                </span>
-                                <h5 class="ins-heading">Lebih dari 40 Universitas terkemuka </h5>
-                            </div>
-                            <div class="ins-brand-slider mt-4 swiper">
-                                <div class="swiper-wrapper">
-                                    <div class="ins-brand-single swiper-slide">
-                                        <img src="user/img/clients/logo-ui.png" alt="brand" class="img-fluid">
-                                    </div>
-                                    <div class="ins-brand-single swiper-slide">
-                                        <img src="user/img/clients/logo-ugm.png" alt="brand" class="img-fluid">
-                                    </div>
-                                    <div class="ins-brand-single swiper-slide">
-                                        <img src="user/img/clients/logo-itb.png" alt="brand" class="img-fluid">
-                                    </div>
-                                    <div class="ins-brand-single swiper-slide">
-                                        <img src="user/img/clients/logo-unair.png" alt="brand" class="img-fluid">
-                                    </div>
-                                    <div class="ins-brand-single swiper-slide">
-                                        <img src="user/img/clients/logo-ipb.png" alt="brand" class="img-fluid">
-                                    </div>
-                                    <div class="ins-brand-single swiper-slide">
-                                        <img src="user/img/clients/logo-its.png" alt="brand" class="img-fluid">
-                                    </div>
-                                    <div class="ins-brand-single swiper-slide">
-                                        <img src="user/img/clients/logo-unpad.png" alt="brand" class="img-fluid">
-                                    </div>
-                                    <div class="ins-brand-single swiper-slide">
-                                        <img src="user/img/clients/logo-undip.png" alt="brand" class="img-fluid">
-                                    </div>
-                                    <div class="ins-brand-single swiper-slide">
-                                        <img src="user/img/clients/logo-ub.png" alt="brand" class="img-fluid">
-                                    </div>
-                                    <div class="ins-brand-single swiper-slide">
-                                        <img src="user/img/clients/logo-binus.png" alt="brand" class="img-fluid">
-                                    </div>
+                                <div>
+                                    <h3 class="fw-800 mb-0 text-dark">5+ Tahun</h3>
+                                    <p class="small text-muted mb-0 fw-semibold">Dedikasi Pendidikan</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    <!--service section end-->
 
-    <!-- About Start -->
-    <section class="counter-with-video" id="tentang">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-12">
-                    <div class="cyber-about-img text-center mb-30 mb-lg-0">
-                        <img src="{{ asset('user/img/bg.png') }}" alt="VR" class="img-fluid" />
-                        <div class="row g-0">
-                            <div class="col-lg-5">
-                                <div class="sheild-img">
-                                    <img src="{{ asset('user/img/blog-img-1.png') }}" alt="Sheild"
-                                        class="img-fluid d-none d-lg-block" />
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-12">
-                                <div class="pe-2">
-                                    <div class="cyber-about-count-box d-md-flex bg-white p-4 mt-3">
-                                        <div class="pe-3">
-                                            <h2>5+</h2>
-                                        </div>
-                                        <div>
-                                            <h5 class="h6">Tahun Pengalaman </h5>
-                                            <p class="mb-0">Bersama Lebih dari 40 PTN</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="ps-lg-5">
+                        <div class="badge bg-primary-soft text-primary px-3 py-2 rounded-pill mb-3 fw-bold shadow-sm">
+                            TENTANG KAMI
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="pt-5">
-                        <div class="section-heading mb-5">
-                            <h5 class="h6 text-primary">Inilah Kami</h5>
-                            <h2>Tentang UniversRegis #Beasiswa</h2>
-                            <p>
-                                UniversRegis Beasiswa adalah gerakan yang membuka akses bagi pelajar berprestasi untuk kuliah di
-                                40+ PTN mitra, dengan dukungan beasiswa, pembinaan, dan pendampingan agar siap bersaing dan
-                                berkontribusi.
-                            </p>
-                            <p>
-                                Kolaborasi ini bertujuan mewujudkan pemerataan pendidikan dan mencetak generasi muda unggul
-                                dari berbagai penjuru Indonesia.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- About End -->
-
-    <!--achievement section start-->
-    <section class="ins-achievement-section ptb-120 overflow-hidden" id="benefit">
-        <div class="container">
-            <div class="row g-5 align-items-center">
-                <div class="col-xl-6">
-                    <div class="ins-achivements-box bg-white rounded position-relative overflow-hidden">
-                        <span class="border-hr position-absolute"></span>
-                        <span class="border-vr position-absolute"></span>
-                        <div class="row g-0">
-                            <div class="col-6">
-                                <div class="ins-achievement-box-item text-end">
-
-                                    <img src="user/img/icons/ins-7.svg" alt="icon" class="img-fluid">
-                                    <h3 class="ins-heading mb-0 mt-2"><span class="counter">40+ </span>PTN Ternama</h3>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="ins-achievement-box-item text-start">
-                                    <img src="user/img/icons/ins-5.svg" alt="icon" class="img-fluid">
-                                    <h3 class="ins-heading mb-0 mt-2"><span class="counter">5.000 + </span> Peserta Lolos
-                                    </h3>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="ins-achievement-box-item text-end">
-                                    <img src="user/img/icons/ins-6.svg" alt="icon" class="img-fluid">
-                                    <h3 class="ins-heading mb-0 mt-2"><span class="counter">90</span>% Kepuasan Peserta</h3>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="ins-achievement-box-item text-start">
-                                    <img src="user/img/icons/ins-4.svg" alt="icon" class="img-fluid">
-                                    <h3 class="ins-heading mb-0 mt-2"><span class="counter">Beasiswa Full </span>100%</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6">
-                    <div class="ins-achievement-info">
-                        <div class="ins-title mb-30">
-                            <div class="d-flex align-items-center mb-3">
-                                <span class="subtitle fw-bold text-primary">Benefit</span>
-                            </div>
-                            <h2 class="ins-heading mb-3">Kenapa Bergabung dengan <mark class="text-primary">UniversRegis
-                                    Beasiswa?.</mark></h2>
-                        </div>
-                        <ul class="ins-info-list mb-0 list-unstyled">
-                            <li class="d-flex align-items-start">
-                                <div class="ins-info-content ms-3">
-                                    <h6 class="mb-1 ins-heading"><i class="fas fa-check-circle me-2 text-primary"></i>Akses
-                                        ke 40+ PTN Ternama</h6>
-                                    <p class="mb-0 fs-md">Bekerja sama langsung dengan perguruan tinggi negeri terbaik.</p>
-                                </div>
-                            </li>
-                            <li class="d-flex align-items-start">
-                                <div class="ins-info-content ms-3">
-                                    <h6 class="mb-1 ins-heading"><i
-                                            class="fas fa-check-circle me-2 text-primary"></i>Beasiswa & Pendampingan
-                                        Lengkap</h6>
-                                    <p class="mb-0 fs-md">Termasuk biaya, pembinaan, dan komunitas supportif.</p>
-                                </div>
-                            </li>
-                            <li class="d-flex align-items-start">
-                                <div class="ins-info-content ms-3">
-                                    <h6 class="mb-1 ins-heading"><i
-                                            class="fas fa-check-circle me-2 text-primary"></i>Pembinaan Karakter & Soft
-                                        Skill</h6>
-                                    <p class="mb-0 fs-md">Lebih dari sekadar bantuan dana — kami siapkan pemimpin masa
-                                        depan..</p>
-                                </div>
-                            </li>
-                            <li class="d-flex align-items-start">
-                                <div class="ins-info-content ms-3">
-                                    <h6 class="mb-1 ins-heading"><i
-                                            class="fas fa-check-circle me-2 text-primary"></i>Komunitas Alumni Kuat</h6>
-                                    <p class="mb-0 fs-md">Terhubung dengan ratusan alumni di berbagai bidang.</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> <!--achievement section end-->
-
-    <!--subscription area start-->
-    <section class="ins-subscription-area" id="daftar">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="ins-subscription text-center rounded position-relative overflow-hidden">
-                        <span class="circle-shape-right"></span>
-                        <span class="circle-shape-left"></span>
-                        <span class="circle-shape-top"></span>
-                        @guest
-                            <h2 class="ins-heading mb-3">Mari Bergabung Bersama <br> UniversRegis Beasiswa!</h2>
-                            <a href="{{ route('register') }}" class="ins-btn ins-primary-btn ">Let's get started</a>
-                        @else
-                            <h2 class="ins-heading mb-3">Cek Status Mu disini!</h2>
-                            <a href="{{ route('user.status') }}" class="ins-btn ins-primary-btn">
-                                Cek Status
-                            </a>
-                        @endguest
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> <!--subscription area end-->
-
-    <!-- Faq Start -->
-    <section class="cyber-faq pt-120 pb-60"  id="faq">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-12 col-lg-6">
-                    <div class="section-heading text-center mb-5">
-                        <h5 class="h6 text-primary">Faq</h5>
-                        <h2>Frequently Asked Questions</h2>
-                        <p>
-                            Beberapa Pertanyaan yang sering ditanyakan
+                        <h2 class="display-5 fw-800 mb-4">Membangun Masa Depan Bersama <br>
+                            <span class="text-gradient">UniversRegis #Beasiswa</span>
+                        </h2>
+                        <p class="text-muted fs-5 mb-4 leading-relaxed">
+                            Kami bukan sekadar platform, melainkan <strong>gerakan nyata</strong> yang menjembatani mimpi
+                            pelajar berprestasi untuk meraih kursi di PTN impian.
                         </p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6 col-md-12">
-                    <div class="cyber-faq-wrapper">
-                        <div class="accordion faq-accordion" id="accordionExample">
-                            <div class="accordion-item border rounded active">
-                                <h5 class="accordion-header" id="faq-1">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse-1" aria-expanded="true">
-                                        Apa itu UniversRegis Beasiswa?
-                                    </button>
-                                </h5>
-                                <div id="collapse-1" class="accordion-collapse collapse show" aria-labelledby="faq-1"
-                                    data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        UniversRegis Beasiswa adalah program beasiswa pendidikan yang bekerja sama dengan lebih
-                                        dari 40 Perguruan Tinggi Negeri (PTN) ternama di Indonesia. Program ini tidak hanya
-                                        memberikan bantuan biaya kuliah, tetapi juga pendampingan, pelatihan soft skill,
-                                        serta akses ke komunitas alumni yang kuat.
-                                    </div>
+
+                        <div class="mt-4">
+                            <div class="list-item-hover d-flex align-items-start mb-2">
+                                <div class="me-3">
+                                    <span class="badge bg-success-soft rounded-circle p-2">
+                                        <i class="fas fa-check text-success"></i>
+                                    </span>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-1 text-dark">Pendampingan Intensif 24/7</h6>
+                                    <p class="small text-muted">Bimbingan tanpa batas waktu oleh mentor ahli.</p>
                                 </div>
                             </div>
-                            <div class="accordion-item border rounded">
-                                <h5 class="accordion-header" id="faq-2">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse-2" aria-expanded="false">
-                                        Siapa saja yang bisa mendaftar UniversRegis Beasiswa?
-                                    </button>
-                                </h5>
-                                <div id="collapse-2" class="accordion-collapse collapse" aria-labelledby="faq-2"
-                                    data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        UniversRegis Beasiswa terbuka untuk pelajar SMA/SMK sederajat kelas 12 dan lulusan tahun
-                                        ini yang memiliki semangat tinggi untuk melanjutkan pendidikan ke jenjang perguruan
-                                        tinggi, terutama mereka yang memiliki keterbatasan ekonomi namun berprestasi.
-                                    </div>
+
+                            <div class="list-item-hover d-flex align-items-start mb-2">
+                                <div class="me-3">
+                                    <span class="badge bg-success-soft rounded-circle p-2">
+                                        <i class="fas fa-check text-success"></i>
+                                    </span>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-1 text-dark">Beasiswa Biaya Kuliah 100%</h6>
+                                    <p class="small text-muted">Fokus belajar tanpa beban finansial.</p>
                                 </div>
                             </div>
-                            <div class="accordion-item border rounded">
-                                <h5 class="accordion-header" id="faq-3">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse-3" aria-expanded="false">
-                                        Apa saja yang didapatkan jika lolos beasiswa ini?
-                                    </button>
-                                </h5>
-                                <div id="collapse-3" class="accordion-collapse collapse" aria-labelledby="faq-3"
-                                    data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        Penerima beasiswa akan mendapatkan bantuan biaya kuliah secara penuh (100%),
-                                        pendampingan akademik dan non-akademik, pelatihan pengembangan diri, serta akses ke
-                                        jaringan alumni dan komunitas yang suportif.
-                                    </div>
+
+                            <div class="list-item-hover d-flex align-items-start">
+                                <div class="me-3">
+                                    <span class="badge bg-success-soft rounded-circle p-2">
+                                        <i class="fas fa-check text-success"></i>
+                                    </span>
                                 </div>
-                            </div>
-                            <div class="accordion-item border rounded">
-                                <h5 class="accordion-header" id="faq-4">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse-4" aria-expanded="false">
-                                        Bagaimana cara mendaftar UniversRegis Beasiswa?
-                                    </button>
-                                </h5>
-                                <div id="collapse-4" class="accordion-collapse collapse" aria-labelledby="faq-4"
-                                    data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        Pendaftaran dilakukan secara online melalui website resmi UniversRegis Beasiswa. Peserta
-                                        harus mengisi formulir, melampirkan dokumen yang diperlukan, dan mengikuti proses
-                                        seleksi seperti tes snbt
-                                    </div>
+                                <div>
+                                    <h6 class="fw-bold mb-1 text-dark">Jaringan Alumni PTN Terbesar</h6>
+                                    <p class="small text-muted">Akses ke komunitas mahasiswa PTN seluruh Indonesia.</p>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="mt-5">
+                            <a href="#program" class="btn btn-primary btn-lg rounded-pill px-5 shadow-lg fw-bold">
+                                Pelajari Program <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="cyber-faq-img text-lg-center mt-5 mt-lg-0 0">
-                        <img src="{{ asset('user/img/kuliah.png') }}" alt="cyber security" class="img-fluid" />
-                    </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-100" id="daftar">
+        <div class="container">
+            <div class="p-5 rounded-5 text-center position-relative overflow-hidden shadow-lg"
+                style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); border: 1px solid rgba(255,255,255,0.1);"
+                data-aos="zoom-in">
+
+                <div class="position-absolute top-50 start-50 translate-middle w-75 h-75"
+                    style="background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); filter: blur(50px); pointer-events: none;">
+                </div>
+
+                <div class="position-relative z-1 py-4">
+                    <h2 class="display-5 fw-800 mb-4 text-white" style="letter-spacing: -1px;">
+                        Mari Bergabung Bersama <br> UniversRegis Beasiswa!
+                    </h2>
+
+                    <p class="mb-5 fs-5 mx-auto text-white opacity-90" style="max-width: 600px;">
+                        Jangan biarkan biaya menghalangi mimpimu. Daftar sekarang dan raih kursi di Perguruan Tinggi Negeri
+                        impianmu.
+                    </p>
+
+                    @guest
+                        <a href="{{ route('register') }}" class="btn btn-white-custom">
+                            Daftar Sekarang
+                        </a>
+                    @else
+                        <a href="{{ route('user.status') }}" class="btn btn-white-custom">
+                            Cek Status Anda
+                        </a>
+                    @endguest
                 </div>
             </div>
         </div>
     </section>
-    <!-- Faq End -->
+    <style>
+        /* Styling khusus agar semua teks putih & tombol serasi */
+        .fw-800 {
+            font-weight: 800;
+        }
+
+        .opacity-90 {
+            opacity: 0.9;
+        }
+
+        .btn-white-custom {
+            background: #ffffff;
+            color: #4f46e5 !important;
+            /* Teks tombol tetap kontras agar user tahu itu tombol */
+            font-weight: 700;
+            padding: 16px 45px;
+            border-radius: 50px;
+            border: 2px solid #ffffff;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-white-custom:hover {
+            background: transparent;
+            color: #ffffff !important;
+            /* Saat hover tombol jadi transparan teks putih */
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+
+    <section class="py-5 bg-white" id="faq">
+        <div class="container py-lg-5">
+            <div class="row mb-5">
+                <div class="col-lg-6" data-aos="fade-up">
+                    <span class="text-primary fw-bold ls-1 mb-2 d-block small">FAQ</span>
+                    <h2 class="display-6 fw-800 text-dark mb-3">Pertanyaan yang Sering Diajukan</h2>
+                    <p class="text-dark opacity-75 lead">Temukan jawaban cepat mengenai program beasiswa dan proses
+                        pendaftaran UniversRegis.</p>
+                </div>
+            </div>
+
+            <div class="row g-5">
+                <div class="col-lg-7" data-aos="fade-right">
+                    <div class="accordion accordion-flush" id="faqAccordion">
+
+                        <div class="accordion-item border-bottom">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button bg-transparent fw-bold fs-5 text-dark py-4 shadow-none"
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#q1">
+                                    Apa itu UniversRegis Beasiswa?
+                                </button>
+                            </h2>
+                            <div id="q1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-dark pb-4 lh-lg">
+                                    UniversRegis Beasiswa adalah program pendidikan strategis yang bekerja sama dengan lebih
+                                    dari 40 PTN ternama di Indonesia. Kami memberikan bantuan biaya pendidikan, pendampingan
+                                    akademik, serta program pengembangan diri bagi mahasiswa.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item border-bottom">
+                            <h2 class="accordion-header">
+                                <button
+                                    class="accordion-button collapsed bg-transparent fw-bold fs-5 text-dark py-4 shadow-none"
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#q2">
+                                    Apa saja syarat utama pendaftaran?
+                                </button>
+                            </h2>
+                            <div id="q2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-dark pb-4 lh-lg">
+                                    Program ini terbuka bagi siswa SMA/SMK sederajat kelas 12 atau lulusan <i>gap year</i>
+                                    yang memiliki semangat belajar tinggi. Syarat utama mencakup komitmen untuk mengikuti
+                                    seluruh rangkaian pembinaan yang telah dijadwalkan.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-5 text-center" data-aos="fade-left">
+                    <img src="{{ asset('user/img/kuliah.png') }}" class="img-fluid rounded-4 shadow-sm"
+                        alt="FAQ UniversRegis" style="max-height: 400px; object-fit: contain;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        /* Gradasi teks pada kata kunci */
+        .hero-gradient-text {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        /* Badge yang lebih soft dan modern */
+        .badge-soft {
+            background: rgba(79, 70, 229, 0.1);
+            color: #4f46e5;
+            padding: 10px 20px;
+            letter-spacing: 1px;
+            font-weight: 700;
+            border: 1px solid rgba(79, 70, 229, 0.2);
+        }
+
+        /* Efek tombol yang bersinar */
+        .ins-primary-btn {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white !important;
+            padding: 16px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+            border: none;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .ins-primary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(79, 70, 229, 0.5);
+        }
+
+        /* Animasi mengambang untuk gambar hero */
+        .hero-img-anim {
+            animation: floating 6s ease-in-out infinite;
+            filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.1));
+        }
+
+        @keyframes floating {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Dekorasi background (blob) */
+        .hero-blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%);
+            top: -10%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1;
+        }
+
+        /* Efek kartu statistik yang lebih clean */
+        .stats-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stats-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(79, 70, 229, 0.1);
+        }
+
+        /* Animasi angka agar lebih mencolok */
+        .stat-number {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        /* Container logo yang modern */
+        .brand-container {
+            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        }
+
+        .brand-logo-img {
+            height: 40px;
+            width: auto;
+            filter: grayscale(100%) brightness(0.8);
+            opacity: 0.5;
+            transition: all 0.4s ease;
+        }
+
+        .brand-logo-img:hover {
+            filter: grayscale(0%) brightness(1);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* Gradasi teks untuk judul agar terlihat modern */
+        .text-gradient {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Card glassmorphism yang lebih soft */
+        .modern-glass-card {
+            background: rgba(255, 255, 255, 0.8) !important;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Dekorasi elemen di belakang gambar */
+        .blob-decor {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(79, 70, 229, 0.15) 0%, transparent 70%);
+            z-index: -1;
+            top: -50px;
+            left: -50px;
+            border-radius: 50%;
+        }
+
+        /* Animasi checklist */
+        .list-item-hover {
+            transition: transform 0.3s ease;
+            padding: 10px;
+            border-radius: 12px;
+        }
+
+        .list-item-hover:hover {
+            background: rgba(79, 70, 229, 0.05);
+            transform: translateX(10px);
+        }
+
+        #faq .accordion-button:not(.collapsed) {
+            color: var(--bs-primary);
+            background-color: transparent;
+        }
+
+        #faq .accordion-button::after {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-size: 1.2rem;
+        }
+
+        #faq .accordion-item {
+            border-top: none;
+            border-left: none;
+            border-right: none;
+        }
+
+        .ls-1 {
+            letter-spacing: 1px;
+        }
+
+        /* Animasi halus untuk gambar */
+        .hero-img-anim {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .hero-img-anim:hover {
+            transform: translateY(-10px);
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS
+            AOS.init({
+                duration: 1000,
+                once: true,
+                easing: 'ease-out-back'
+            });
+
+            // Initialize Swiper
+            new Swiper('.ins-brand-slider', {
+                slidesPerView: 2,
+                spaceBetween: 40,
+                autoplay: {
+                    delay: 2000,
+                    disableOnInteraction: false,
+                },
+                breakpoints: {
+                    640: {
+                        slidesPerView: 3
+                    },
+                    1024: {
+                        slidesPerView: 5
+                    }
+                }
+            });
+        });
+    </script>
 @endsection

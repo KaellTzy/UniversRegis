@@ -1,284 +1,309 @@
 @extends('layouts.user.user')
 
 @section('content')
+<style>
+    :root {
+        --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+        --surface-white: rgba(255, 255, 255, 0.95);
+        --text-main: #1e293b;
+        --text-muted: #64748b;
+    }
 
-    @if ($seleksi)
-        <div class="container py-4">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 col-md-10">
-                    <div class="card shadow-lg border-0 rounded-lg">
-                        <div class="card-body p-0">
+    .status-page-wrapper {
+        background-color: #f8fafc;
+        position: relative;
+        min-height: 100vh;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        padding: 60px 0;
+    }
 
-                            <!-- Header Struk -->
-                            <div class="bg-primary text-white text-center py-4">
-                                <h2 class="mb-0 fw-bold">STATUS SELEKSI</h2>
-                                <p class="mb-0 mt-2 opacity-75">Hasil Seleksi Calon Mahasiswa</p>
+    #meteorCanvas {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    /* Receipt Card Enhancements */
+    .receipt-card {
+        background: var(--surface-white);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 24px;
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+    }
+
+    /* Efek Gerigi Struk */
+    .receipt-card::after {
+        content: "";
+        position: absolute;
+        bottom: -10px; left: 0; right: 0;
+        height: 20px;
+        background-image: radial-gradient(circle at 10px -5px, transparent 12px, var(--surface-white) 13px);
+        background-size: 20px 20px;
+    }
+
+    .receipt-header {
+        background: var(--primary-gradient);
+        color: white;
+        padding: 50px 20px;
+        text-align: center;
+        border-radius: 24px 24px 0 0;
+        clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+    }
+
+    .header-icon-circle {
+        width: 80px;
+        height: 80px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 15px;
+        backdrop-filter: blur(5px);
+    }
+
+    .info-box {
+        background: #f1f5f9;
+        border-radius: 16px;
+        padding: 16px;
+        height: 100%;
+        transition: all 0.3s ease;
+        border: 1px solid transparent;
+    }
+
+    .info-box:hover {
+        background: white;
+        border-color: #e2e8f0;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    .label-custom {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        color: var(--text-muted);
+        font-weight: 700;
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    .value-custom {
+        color: var(--text-main);
+        font-weight: 700;
+        font-size: 0.95rem;
+        word-break: break-word; /* Handling nama panjang agar tidak overflow */
+    }
+
+    /* Status Badges */
+    .status-alert {
+        border-radius: 20px;
+        border: none;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .alert-success-custom {
+        background: #f0fdf4;
+        color: #166534;
+        border-left: 4px solid #22c55e;
+    }
+
+    .alert-danger-custom {
+        background: #fef2f2;
+        color: #991b1b;
+        border-left: 4px solid #ef4444;
+    }
+
+    .score-display {
+        background: linear-gradient(to bottom, #ffffff, #f8fafc);
+        border: 2px dashed #e2e8f0;
+        border-radius: 20px;
+    }
+
+    .btn-download {
+        background: var(--primary-gradient);
+        border: none;
+        border-radius: 12px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        transition: 0.4s;
+        color: white;
+    }
+
+    .btn-download:hover {
+        opacity: 0.9;
+        transform: scale(1.02);
+        box-shadow: 0 10px 20px rgba(99, 102, 241, 0.4);
+        color: white;
+    }
+</style>
+
+<div class="status-page-wrapper">
+    <canvas id="meteorCanvas"></canvas>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-8 col-md-10">
+
+                @if ($seleksi || $pendaftaran)
+                <div class="receipt-card" data-aos="fade-up">
+                    <div class="receipt-header">
+                        <div class="header-icon-circle">
+                            <i class="fas fa-graduation-cap fa-2xl"></i>
+                        </div>
+                        <h3 class="fw-bold mb-1">HASIL SELEKSI</h3>
+                        <p class="small opacity-75 mb-0">Tahun Akademik 2026/2027</p>
+                    </div>
+
+                    <div class="p-4 p-md-5">
+                        <div class="row g-3 mb-4">
+                            @php $data = $seleksi ? $seleksi->pendaftaran : $pendaftaran; @endphp
+
+                            <div class="col-6">
+                                <div class="info-box">
+                                    <span class="label-custom"><i class="fas fa-id-card me-1"></i> ID Daftar</span>
+                                    <div class="value-custom">{{ $data->kode_seleksi }}</div>
+                                </div>
                             </div>
-
-                            <!-- Body Struk -->
-                            <div class="p-4" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
-
-                                <!-- Info Peserta Card -->
-                                <div class="card border-0 shadow-sm mb-4">
-                                    <div class="card-body p-4">
-                                        <h5 class="card-title text-primary mb-3">
-                                            <i class="fas fa-user-circle me-2"></i>Informasi Peserta
-                                        </h5>
-
-                                        <div class="row g-3">
-                                            <div class="col-md-6">
-                                                <div class="info-item">
-                                                    <label class="form-label text-muted small">KODE SELEKSI</label>
-                                                    <div class="fw-bold fs-6">{{ $seleksi->pendaftaran->kode_seleksi }}</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="info-item">
-                                                    <label class="form-label text-muted small">NAMA PESERTA</label>
-                                                    <div class="fw-bold fs-6">{{ $seleksi->pendaftaran->peserta->nama_lengkap }}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="info-item">
-                                                    <label class="form-label text-muted small">UNIVERSITAS</label>
-                                                    <div class="fw-bold fs-6">{{ $seleksi->pendaftaran->ptn->nama }}</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="info-item">
-                                                    <label class="form-label text-muted small">PROGRAM STUDI</label>
-                                                    <div class="fw-bold fs-6">{{ $seleksi->pendaftaran->ptn->prodi->nama }}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="col-6">
+                                <div class="info-box">
+                                    <span class="label-custom"><i class="fas fa-user me-1"></i> Peserta</span>
+                                    {{-- Menampilkan nama lengkap secara utuh --}}
+                                    <div class="value-custom">{{ $data->peserta->nama_lengkap }}</div>
                                 </div>
-
-                                <!-- Hasil Seleksi Card -->
-                                <div class="card border-0 shadow-sm mb-4">
-                                    <div class="card-body p-4">
-                                        <h5 class="card-title text-primary mb-3">
-                                            <i class="fas fa-chart-line me-2"></i>Hasil Seleksi
-                                        </h5>
-
-                                        <div class="row g-3">
-                                            <div class="col-md-6">
-                                                <div class="info-item">
-                                                    <label class="form-label text-muted small">JALUR UJIAN/SELEKSI</label>
-                                                    <div class="fw-bold fs-6">
-                                                        <span
-                                                            class="badge bg-info text-dark">{{ $seleksi->pendaftaran->jalur }}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="info-item">
-                                                    <label class="form-label text-muted small">NILAI TOTAL</label>
-                                                    @if ($seleksi->nilai_total == null)
-                                                        <div class="fw-bold fs-5 text-primary">Sedang Di Proses</div>
-                                                    @else
-                                                        <div class="fw-bold fs-5 text-primary">{{ $seleksi->nilai_total }}</div>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="info-box">
+                                    <span class="label-custom"><i class="fas fa-university me-1"></i> Institusi</span>
+                                    <div class="value-custom">{{ $data->ptn->nama }}</div>
                                 </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="info-box">
+                                    <span class="label-custom"><i class="fas fa-book-open me-1"></i> Program Studi</span>
+                                    <div class="value-custom">{{ $data->ptn->prodi->nama }}</div>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="score-display text-center py-4 mb-4">
+                            <span class="label-custom">Nilai Akhir</span>
+                            <h1 class="display-3 fw-bold text-dark mb-0">
+                                {{ $seleksi && $seleksi->nilai_total ? $seleksi->nilai_total : '--' }}
+                            </h1>
+                            <span class="badge rounded-pill bg-primary px-3">Jalur {{ $data->jalur }}</span>
+                        </div>
 
-                                @if ($seleksi->status_kelulusan == "lulus")
-                                    <div class="alert alert-success border-0 shadow-sm mb-4" role="alert">
-                                        <div class="text-center py-3">
-                                            <div class="mb-3">
-                                                <i class="fas fa-check-circle fa-4x text-success"></i>
-                                            </div>
-                                            <h3 class="alert-heading mb-3 text-success">
-                                                <i class="fas fa-graduation-cap me-2"></i>SELAMAT! ANDA DINYATAKAN LULUS
-                                            </h3>
-                                            <p class="mb-0 fs-6">
-                                                Selamat kepada calon mahasiswa Indonesia yang lulus melalui seleksi
-                                                <strong>{{ $seleksi->pendaftaran->jalur }}</strong>
-                                            </p>
-                                            <div class="mt-3">
-                                                <span class="badge bg-success fs-6 px-3 py-2">
-                                                    <i class="fas fa-star me-1"></i>LULUS
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
+                        @if($seleksi)
+                            @if ($seleksi->status_kelulusan == "lulus")
+                                <div class="status-alert alert-success-custom p-4 text-center mb-4">
+                                    <i class="fas fa-check-circle fa-2xl mb-3"></i>
+                                    <h4 class="fw-bold">Selamat, Anda Lulus!</h4>
+                                    <p class="small mb-0 opacity-75">Silahkan unduh sertifikat sebagai bukti kelulusan untuk tahap daftar ulang.</p>
+                                </div>
+                            @else
+                                <div class="status-alert alert-danger-custom p-4 text-center mb-4">
+                                    <i class="fas fa-times-circle fa-2xl mb-3"></i>
+                                    <h4 class="fw-bold">Belum Berhasil</h4>
+                                    <p class="small mb-0 opacity-75">Jangan patah semangat. Masih banyak jalan menuju impian Anda!</p>
+                                </div>
+                            @endif
+                        @else
+                            <div class="status-alert {{ $pendaftaran->status == 'ditolak' ? 'alert-danger-custom' : 'bg-light' }} p-4 text-center mb-4">
+                                @if($pendaftaran->status == "diproses")
+                                    <div class="spinner-border text-primary spinner-border-sm mb-2"></div>
+                                    <h5 class="fw-bold">Berkas Sedang Ditinjau</h5>
+                                    <p class="small mb-0">Dokumen Anda sedang dalam antrean verifikasi tim seleksi.</p>
+                                @elseif($pendaftaran->status == "diterima")
+                                    <i class="fas fa-file-signature text-success fa-2xl mb-3"></i>
+                                    <h5 class="fw-bold">Verifikasi Berkas Berhasil</h5>
+                                    <p class="small mb-0">Data Anda valid. Pengumuman nilai akan segera dirilis.</p>
                                 @else
-                                    <div class="alert alert-danger border-0 shadow-sm mb-4" role="alert">
-                                        <div class="text-center py-3">
-                                            <div class="mb-3">
-                                                <i class="fas fa-times-circle fa-4x text-danger"></i>
-                                            </div>
-                                            <h3 class="alert-heading mb-3 text-danger">
-                                                <i class="fas fa-exclamation-triangle me-2"></i>ANDA DINYATAKAN TIDAK LULUS
-                                            </h3>
-                                            <p class="mb-0 fs-6">
-                                                Jangan putus asa dan tetap semangat untuk kesempatan berikutnya
-                                            </p>
-                                            <div class="mt-3">
-                                                <span class="badge bg-danger fs-6 px-3 py-2">
-                                                    <i class="fas fa-times me-1"></i>TIDAK LULUS
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <i class="fas fa-ban fa-2xl mb-3 text-danger"></i>
+                                    <h5 class="fw-bold">Berkas Ditolak</h5>
+                                    <p class="small mb-0">Ada ketidaksesuaian data pada dokumen yang Anda unggah.</p>
                                 @endif
-
                             </div>
+                        @endif
 
-                            <!-- Footer dengan tombol aksi -->
-                            <div class="card-footer bg-light border-0 p-4">
-                                <div class="row g-2">
-                                    <div class="col-md-12">
-                                        <a href="{{ route('status.exportPDF') }}" class="btn btn-primary w-100 py-2">
-                                            <i class="fas fa-download me-2"></i>Download PDF
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
+                        @if($seleksi && $seleksi->status_kelulusan == "lulus")
+                        <div class="mt-2">
+                            <a href="{{ route('status.exportPDF') }}" class="btn btn-download w-100 py-3 d-flex align-items-center justify-content-center gap-2">
+                                <i class="fas fa-file-pdf"></i>
+                                UNDUH SERTIFIKAT KELULUSAN
+                            </a>
                         </div>
+                        @endif
                     </div>
                 </div>
-            </div>
-        </div>
-    @elseif($pendaftaran)
-        <div class="container py-4">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 col-md-10">
-                    <div class="card shadow-lg border-0 rounded-lg">
-                        <div class="card-body p-0">
-
-                            <!-- Header Struk -->
-                            <div class="bg-primary text-white text-center py-4">
-                                <h2 class="mb-0 fw-bold">STATUS SELEKSI</h2>
-                                <p class="mb-0 mt-2 opacity-75">Hasil Seleksi Calon Mahasiswa</p>
-                            </div>
-
-                            <!-- Body Struk -->
-                            <div class="p-4" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
-
-                                <!-- Info Peserta Card -->
-                                <div class="card border-0 shadow-sm mb-4">
-                                    <div class="card-body p-4">
-                                        <h5 class="card-title text-primary mb-3">
-                                            <i class="fas fa-user-circle me-2"></i>Informasi Peserta
-                                        </h5>
-
-                                        <div class="row g-3">
-                                            <div class="col-md-6">
-                                                <div class="info-item">
-                                                    <label class="form-label text-muted small">KODE SELEKSI</label>
-                                                    <div class="fw-bold fs-6">{{ $pendaftaran->kode_seleksi }}</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="info-item">
-                                                    <label class="form-label text-muted small">NAMA PESERTA</label>
-                                                    <div class="fw-bold fs-6">{{ $pendaftaran->peserta->nama_lengkap }}</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="info-item">
-                                                    <label class="form-label text-muted small">UNIVERSITAS</label>
-                                                    <div class="fw-bold fs-6">{{ $pendaftaran->ptn->nama }}</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="info-item">
-                                                    <label class="form-label text-muted small">PROGRAM STUDI</label>
-                                                    <div class="fw-bold fs-6">{{ $pendaftaran->ptn->prodi->nama }}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Hasil Seleksi Card -->
-                                <div class="card border-0 shadow-sm mb-4">
-                                    <div class="card-body p-4">
-                                        <h5 class="card-title text-primary mb-3">
-                                            <i class="fas fa-chart-line me-2"></i>Hasil Seleksi
-                                        </h5>
-
-                                        <div class="row g-3">
-                                            <div class="col-md-6">
-                                                <div class="info-item">
-                                                    <label class="form-label text-muted small">JALUR UJIAN/SELEKSI</label>
-                                                    <div class="fw-bold fs-6">
-                                                        <span class="badge bg-info text-dark">{{ $pendaftaran->jalur }}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="info-item">
-                                                    <label class="form-label text-muted small">NILAI TOTAL</label>
-
-                                                    <div class="fw-bold fs-5 text-primary">Sedang Di Proses</div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Status Kelulusan -->
-                                @if ($pendaftaran->status == "diproses")
-                                    <div class="alert alert-warning border-0 shadow-sm mb-4" role="alert">
-                                        <div class="d-flex align-items-center">
-                                            <div>
-                                                <h5 class="alert-heading mb-1">
-                                                    <i class="fas fa-clock me-2"></i>DOKUMEN SEDANG DIPROSES
-                                                </h5>
-                                                <p class="mb-0">Harap menunggu, dokumen Anda sedang dalam tahap verifikasi.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @elseif ($pendaftaran->status == "diterima")
-                                    <div class="alert alert-success border-0 shadow-sm mb-4" role="alert">
-                                        <div class="d-flex align-items-center">
-                                            <div>
-                                                <h5 class="alert-heading mb-1">
-                                                    <i class="fas fa-graduation-cap me-2"></i>  DOKUMEN DITERIMA
-                                                </h5>
-                                                <p class="mb-0">Selamat, dokumen Anda telah diterima.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @elseif ($pendaftaran->status == "ditolak")
-                                    <div class="alert alert-danger border-0 shadow-sm mb-4" role="alert">
-                                        <div class="d-flex align-items-center">
-                                            <div>
-                                                <h5 class="alert-heading mb-1">
-                                                    <i class="fas fa-exclamation-triangle me-2"></i>DOKUMEN DITOLAK
-                                                </h5>
-                                                <p class="mb-0">Dokumen anda telah ditolak.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
-
-                            </div>
-
-                        </div>
-                    </div>
+                @else
+                <div class="text-center p-5 receipt-card">
+                    <img src="https://illustrations.popsy.co/purple/searching.svg" alt="empty" style="width: 180px" class="mb-4">
+                    <h4 class="fw-bold">Belum Ada Data</h4>
+                    <p class="text-muted small">Anda belum terdaftar dalam program seleksi manapun.</p>
+                    <a href="/" class="btn btn-primary px-4 rounded-pill">Cari Program</a>
                 </div>
+                @endif
+
             </div>
         </div>
-    @else
+    </div>
+</div>
 
-        <div class="container py-5">
-            <div class="alert alert-warning text-center shadow-sm">
-                <h4 class="mb-2"><i class="fas fa-info-circle me-2"></i>Data Seleksi Tidak Tersedia</h4>
-                <p class="mb-0">Belum ada data hasil seleksi yang dapat ditampilkan saat ini.</p>
-            </div>
-        </div>
+<script>
+    const canvas = document.getElementById('meteorCanvas');
+    const ctx = canvas.getContext('2d');
+    let meteors = [];
 
-    @endif
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
 
+    class Meteor {
+        constructor() { this.reset(); }
+        reset() {
+            this.x = Math.random() * canvas.width + 200;
+            this.y = Math.random() * canvas.height - 200;
+            this.speed = Math.random() * 3 + 1;
+            this.len = Math.random() * 60 + 40;
+            this.opacity = Math.random() * 0.3;
+        }
+        draw() {
+            ctx.beginPath();
+            let gradient = ctx.createLinearGradient(this.x, this.y, this.x - this.len, this.y + this.len);
+            gradient.addColorStop(0, `rgba(168, 85, 247, ${this.opacity})`);
+            gradient.addColorStop(1, 'rgba(168, 85, 247, 0)');
+            ctx.strokeStyle = gradient;
+            ctx.lineWidth = 2;
+            ctx.moveTo(this.x, this.y);
+            ctx.lineTo(this.x - this.len, this.y + this.len);
+            ctx.stroke();
+        }
+        update() {
+            this.x -= this.speed;
+            this.y += this.speed;
+            if (this.y > canvas.height + 100 || this.x < -100) this.reset();
+        }
+    }
+
+    for (let i = 0; i < 12; i++) meteors.push(new Meteor());
+
+    function loop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        meteors.forEach(m => { m.update(); m.draw(); });
+        requestAnimationFrame(loop);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    loop();
+</script>
 @endsection
