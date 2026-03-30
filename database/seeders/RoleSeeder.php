@@ -14,21 +14,21 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         User::create([
-            'name' => 'Admin',
-            'email' => 'AdminLaskar@admin.org',
+            'name' => 'Aku Atmint',
+            'email' => 'UniversRegis@admin.org',
             'role' => 'admin',
             'password' => bcrypt('admin1234568'),
         ]);
 
         User::create([
-            'name' => 'Fazli Rausyan Fikri',
-            'email' => 'timlaskar@reviewer.org',
+            'name' => '1dlerosie',
+            'email' => 'TimUnivers1@reviewer.org',
             'role' => 'reviewer',
             'password' => bcrypt('12345678'),
         ]);
         User::create([
-            'name' => 'Sulis Alisa Putri',
-            'email' => 'timlaskar2@reviewer.org',
+            'name' => 'Ada Wong',
+            'email' => 'TimUnivers2@reviewer.org',
             'role' => 'reviewer',
             'password' => bcrypt('12345678'),
         ]);

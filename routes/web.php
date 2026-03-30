@@ -13,7 +13,8 @@ use App\Http\Controllers\UniversitasController;
 use App\Http\Controllers\WilayahController;
 use App\Http\Middleware\role;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ProvinsiController;
+use App\Http\Controllers\KotaController;
 
 
 Auth::routes();
@@ -31,6 +32,8 @@ Route::prefix('dashboard')->as('admin.')->middleware(['auth', role::class])->gro
     Route::resource('peserta', ManagePeserta::class);
     Route::resource('dokumen', DokumenController::class);
     Route::resource('penilaian', PenilaianController::class);
+    Route::resource('provinsi', ProvinsiController::class);
+    Route::resource('kota', KotaController::class);
     // Reviewer Export
     Route::get('/reviewer-export', [ReviewerController::class, 'export'])->name('reviewer.export');
     Route::get('/reviewer-exportPDF', [ReviewerController::class, 'exportPDF'])->name('reviewer.exportPDF');

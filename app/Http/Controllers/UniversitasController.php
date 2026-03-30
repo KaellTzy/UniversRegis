@@ -19,21 +19,21 @@ class UniversitasController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->role !== 'admin') {
-            abort(403);
-        }
+        // Mengambil data universitas dengan relasinya
+        $uni = Universitas::with(['prodi', 'kota', 'provinsi'])->get();
 
-        $uni = Universitas::all();
-        $prodi = Prodi::all();
+        // Mengambil data master untuk isi dropdown di modal Tambah/Edit
         $provinsi = Provinsi::all();
         $kota = Kota::all();
+        $prodi = Prodi::all();
 
-        return view('admin.universitas.index', compact('uni', 'prodi', 'provinsi', 'kota'));
+        // Pastikan semua variabel ini di-compact ke view
+        return view('admin.universitas.index', compact('uni', 'provinsi', 'kota', 'prodi'));
     }
 
     public function export()
     {
-        return Excel::download(new UniversitasExport, 'Data-Universitas.xlsx');
+        return Excel::download(new UniversitasExport(), 'Data-Universitas.xlsx');
     }
 
     public function exportPDF()
@@ -44,7 +44,6 @@ class UniversitasController extends Controller
 
         return $pdf->download('Data-Univ.pdf'); // Langsung download
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -66,7 +65,6 @@ class UniversitasController extends Controller
             'kode_prodi' => 'required',
             'prodi_id' => 'required',
             'minimal_nilai_utbk' => 'required',
-            'minimal_nilai_snbp' => 'required'
         ]);
 
         $uni = new Universitas();
@@ -76,7 +74,6 @@ class UniversitasController extends Controller
         $uni->kode_prodi = $request->kode_prodi;
         $uni->prodi_id = $request->prodi_id;
         $uni->minimal_nilai_utbk = $request->minimal_nilai_utbk;
-        $uni->minimal_nilai_snbp = $request->minimal_nilai_snbp;
         $uni->save();
 
         return redirect()->route('admin.universitas.index')->with('success', 'Data Universitas berhasil di tambahkan');
@@ -101,38 +98,44 @@ class UniversitasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Universitas $uni)
+    public function update(Request $request, $id)
     {
-        $this->validate($request, [
+        // Gunakan $id agar lebih aman
+        $request->validate([
             'nama' => 'required',
             'kota_id' => 'required',
             'provinsi_id' => 'required',
             'kode_prodi' => 'required',
             'prodi_id' => 'required',
             'minimal_nilai_utbk' => 'required',
-            'minimal_nilai_snbp' => 'required'
         ]);
 
+        $uni = Universitas::findOrFail($id);
         $uni->nama = $request->nama;
-        $uni->kota = $request->kota;
-        $uni->provinsi = $request->provinsi;
+        $uni->kota_id = $request->kota_id; // Perbaikan: gunakan kota_id
+        $uni->provinsi_id = $request->provinsi_id; // Perbaikan: gunakan provinsi_id
         $uni->prodi_id = $request->prodi_id;
         $uni->kode_prodi = $request->kode_prodi;
         $uni->minimal_nilai_utbk = $request->minimal_nilai_utbk;
-        $uni->minimal_nilai_snbp = $request->minimal_nilai_snbp;
         $uni->save();
 
-        return redirect()->route('admin.universitas.index')->with('success', 'Data Universitas berhasil di update');
-
+        return redirect()->route('admin.universitas.index')->with('success', 'Data Universitas berhasil diupdate');
     }
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy($id)
     {
-        $universitas = Universitas::findOrFail($id);
-        $universitas->delete();
-        return redirect()->route('admin.universitas.index')->with('success', 'Data Universitas berhasil di hapus');
+        $uni = Universitas::findOrFail($id);
+
+        // GUNAKAN 'ptn_dan_prodi' (bukan universitas_id)
+        $hasPendaftar = \App\Models\Pendaftaran::where('ptn_dan_prodi', $id)->exists();
+
+        if ($hasPendaftar) {
+            return redirect()->back()->with('error', 'Gagal! Universitas ini tidak bisa dihapus karena sudah memiliki pendaftar.');
+        }
+
+        $uni->delete();
+        return redirect()->route('admin.universitas.index')->with('success', 'Data berhasil dihapus');
     }
 }

@@ -18,7 +18,6 @@ return new class extends Migration {
             $table->foreignId('prodi_id')->constrained('prodis')->onDelete('cascade');
             $table->string('kode_prodi')->unique();
             $table->string('minimal_nilai_utbk');
-            $table->string('minimal_nilai_snbp')->nullable();
             $table->timestamps();
         });
     }

@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('prodis', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama')->unique();
-            $table->timestamps();
-        });
+    $table->id();
+    $table->string('nama')->unique(); // Nama kolom: nama
+    $table->timestamps();
+});
     }
 
     /**

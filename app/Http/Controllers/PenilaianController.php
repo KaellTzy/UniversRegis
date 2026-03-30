@@ -57,7 +57,7 @@ class PenilaianController extends Controller
     {
         // Ambil data pendaftaran
         $pendaftaran = Pendaftaran::with('ptn')->find($request->id_pendaftaran);
-        $jalur = strtoupper($pendaftaran->jalur); // Misalnya: SNBT atau SNBP
+        $jalur = strtoupper($pendaftaran->jalur); // Misalnya: SNBT
 
         // Ambil data universitas terkait
         $universitas = $pendaftaran->ptn;
@@ -65,9 +65,7 @@ class PenilaianController extends Controller
         // Tentukan nilai minimal berdasarkan jalur
         if ($jalur === 'SNBT') {
             $nilai_minimal = $universitas->minimal_nilai_utbk;
-        } elseif ($jalur === 'SNBP') {
-            $nilai_minimal = $universitas->minimal_nilai_snbp;
-        } else {
+        }  else {
             return back()->with('error', 'Jalur tidak valid.');
         }
 

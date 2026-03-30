@@ -3,10 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Prodi;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Universitas extends Model
 {
+    use HasFactory;
+
+    protected $table = 'universitas';
+
     protected $fillable = [
         'nama',
         'kota_id',
@@ -14,25 +18,23 @@ class Universitas extends Model
         'prodi_id',
         'kode_prodi',
         'minimal_nilai_utbk',
-        'minimal_nilai_snbp'
     ];
 
+    // Relasi ke Prodi
     public function prodi()
     {
         return $this->belongsTo(Prodi::class, 'prodi_id');
     }
 
-    public function ptn()
+    // Relasi ke Kota
+    public function kota()
     {
-        return $this->hasOne(Universitas::class);
+        return $this->belongsTo(Kota::class, 'kota_id');
     }
 
-     public function provinsi()
+    // Relasi ke Provinsi
+    public function provinsi()
     {
-    	return $this->BelongsTo(Provinsi::class,'provinsi_id');
-    }
-     public function kota()
-    {
-    	return $this->BelongsTo(Kota::class,'kota_id');
+        return $this->belongsTo(Provinsi::class, 'provinsi_id');
     }
 }
