@@ -56,7 +56,7 @@
                                         <th>No</th>
                                         <th>Universitas</th>
                                         <th>Prodi</th>
-                                        <th>Provinsi</th>
+                                        <th>Lokasi</th>
                                         <th class="text-center">Min. UTBK</th>
                                         <th class="text-center">Aksi</th>
                                     </tr>
@@ -71,7 +71,7 @@
                                             </td>
                                             <td>{{ $u->prodi->nama ?? 'Data Prodi Hilang' }}</td>
                                             <td>
-                                                <small>{{ $u->kota->nama ?? '-' }},
+                                                <small>{{ $u->kota->kota ?? '-' }},
                                                     {{ $u->provinsi->provinsi ?? '-' }}</small>
                                             </td>
                                             <td class="text-center"><span
